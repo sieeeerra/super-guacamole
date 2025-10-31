@@ -392,12 +392,12 @@ main {
                 border-radius: 20px;
                 background-color: $box;
                 overflow: hidden;
-                cursor: url('./icon/zoom_in.svg'), auto;
+                cursor: url('./assets/icon/zoom_in.svg'), auto;
                 transition: flex 0.3s ease-in-out, border-radius 0.3s ease-in-out;
 
                 &.enlarged {
                     flex: 1;
-                    cursor: url('./icon/zoom_out.svg'), auto;
+                    cursor: url('./assets/icon/zoom_out.svg'), auto;
                 }
 
                 video {

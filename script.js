@@ -592,9 +592,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // 커서 상태 변경
       if (item.classList.contains('enlarged')) {
-        item.style.cursor = 'url("./icon/zoom_out.svg"), auto';
+        item.style.cursor = 'url("./assets/icon/zoom_out.svg"), auto';
       } else {
-        item.style.cursor = 'url("./icon/zoom_in.svg"), auto';
+        item.style.cursor = 'url("./assets/icon/zoom_in.svg"), auto';
       }
     });
   });

@@ -367,12 +367,12 @@ main section .vod_items .vod_item {
   border-radius: 20px;
   background-color: #f8f8f8;
   overflow: hidden;
-  cursor: url("./icon/zoom_in.svg"), auto;
+  cursor: url("./assets/icon/zoom_in.svg"), auto;
   transition: flex 0.3s ease-in-out, border-radius 0.3s ease-in-out;
 }
 main section .vod_items .vod_item.enlarged {
   flex: 1;
-  cursor: url("./icon/zoom_out.svg"), auto;
+  cursor: url("./assets/icon/zoom_out.svg"), auto;
 }
 main section .vod_items .vod_item video {
   display: block;
