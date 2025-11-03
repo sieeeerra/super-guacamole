@@ -161,7 +161,7 @@ main section .title_wrap .section_title {
 }
 main section .title_wrap .section_subtitle {
   flex: 1;
-  font-size: 1.6vw;
+  font-size: clamp(16px, 16px + 8 * (100vw - 360px) / 1560, 24px);
   font-weight: 300;
   line-height: 1.3em;
   letter-spacing: -0.01em;
@@ -402,7 +402,7 @@ main section .sns_wrap .sns ul {
 }
 main section .sns_wrap .sns ul li {
   font-family: "Sora", sans-serif;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 300;
   letter-spacing: -0.03em;
   color: #070707;
@@ -413,9 +413,10 @@ main section .sns_wrap .sns ul li:hover {
 main #Works .title_wrap {
   flex-direction: column;
   align-items: flex-start;
-  gap: 10px;
+  gap: 20px;
 }
 main #Contact {
+  padding-top: 40px;
   padding-bottom: 120px;
   background-color: #f5f5f5;
 }
@@ -453,14 +454,11 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: 10px;
+    gap: 20px;
     padding-bottom: 20px;
   }
   main section .title_wrap .section_title {
     font-size: 80px;
-  }
-  main section .title_wrap .section_subtitle {
-    font-size: 16px;
   }
   main section .project {
     height: auto;
@@ -503,7 +501,7 @@ footer {
     margin: 40px 0;
   }
   main section .sns_wrap .sns ul li {
-    font-size: 16px;
+    font-size: 20px;
   }
   #Image .title_wrap .section_title {
     margin-bottom: 8px;
