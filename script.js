@@ -551,8 +551,8 @@ document.addEventListener('DOMContentLoaded', () => {
         ease: 'power1.inOut',
         scrollTrigger: {
           trigger: item,
-          start: 'top 90%',
-          end: 'bottom 30%',
+          start: 'top 95%',
+          end: 'bottom 35%',
           scrub: true,
           onEnter: () => console.log('애니메이션 시작:', index),
           onLeave: () => console.log('애니메이션 종료:', index),
