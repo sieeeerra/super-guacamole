@@ -416,7 +416,6 @@ main #Works .title_wrap {
   gap: 20px;
 }
 main #Contact {
-  padding-top: 40px;
   padding-bottom: 120px;
   background-color: #f5f5f5;
 }
@@ -443,7 +442,6 @@ footer {
     font-size: 20px;
     line-height: 140%;
     padding: 20px;
-    height: 100vh;
   }
   main section {
     padding: 20px;
