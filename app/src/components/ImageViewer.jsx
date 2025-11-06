@@ -1,9 +1,11 @@
 // imageViewer modal component
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 export default function ImageViewer({ isOpen, imageData, onClose }) {
   // 이전 스크롤 위치를 저장하기 위한 ref
   const scrollPositionRef = useRef(0);
+  // 프롬프트 복사 성공 상태 관리
+  const [isCopied, setIsCopied] = useState(false);
 
   // 모달 열림/닫힘에 따른 배경 스크롤 제어
   useEffect(() => {
@@ -55,6 +57,12 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
       navigator.clipboard.writeText(imageData.img_description)
         .then(() => {
           console.log('프롬프트가 클립보드에 복사되었습니다.');
+          // 복사 성공 상태를 true로 설정
+          setIsCopied(true);
+          // 2초 후 자동으로 메시지 숨김
+          setTimeout(() => {
+            setIsCopied(false);
+          }, 2000);
         })
         .catch((err) => {
           console.error('복사 실패:', err);
@@ -64,6 +72,10 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
 
   return (
     <div className="image_viewer_overlay">
+      {/* 복사 성공 메시지 */}
+      {isCopied && (
+        <div className="copy_success_message">copied!</div>
+      )}
       <section className="img_viewer">
         {/* 모바일 버튼 */}
         <div className="mobile_button">
