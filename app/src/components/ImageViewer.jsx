@@ -7,6 +7,23 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
   // 프롬프트 복사 성공 상태 관리
   const [isCopied, setIsCopied] = useState(false);
 
+  // ESC 키로 모달 닫기
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && isOpen) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('keydown', handleEscape);
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+    };
+  }, [isOpen, onClose]);
+
   // 모달 열림/닫힘에 따른 배경 스크롤 제어
   useEffect(() => {
     if (isOpen) {
@@ -90,7 +107,15 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
 
         {/* 이미지 상세 정보 영역 */}
         <div className="prompt_wrap">
-          <button className="copy_button" onClick={handleCopyPrompt}>Copy prompt</button>
+          <div className='button_wrap'>
+            <button className="close_button" onClick={onClose}>
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M25 7L7 25" stroke="white" stroke-width="1.5" stroke-linejoin="bevel" />
+                <path d="M25 25L7 7" stroke="white" stroke-width="1.5" stroke-linejoin="bevel" />
+              </svg>
+            </button>
+            <button className="copy_button" onClick={handleCopyPrompt}>Copy prompt</button>
+          </div>
           <div className="prompt_content">
             <span className="prompt_title">Prompt</span>
             <span className="prompt_description">{imageData.img_description || ''}</span>
