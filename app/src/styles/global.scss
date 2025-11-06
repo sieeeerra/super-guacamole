@@ -255,11 +255,14 @@ main {
                 background-color: #fff;
                 border: none;
                 padding: 14px 18px;
-                border-radius: 100px;
+                border-radius: 25px;
                 align-self: flex-end;
+                transition: border-radius .3s ease, opacity .3s ease;
 
                 &:hover {
                     cursor: pointer;
+                    opacity: 0.8;
+                    border-radius: 15px;
                 }
             }
 

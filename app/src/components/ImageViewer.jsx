@@ -20,14 +20,14 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
       document.documentElement.style.scrollBehavior = 'auto';
       document.documentElement.scrollTop = scrollPositionRef.current;
       window.scrollTo(0, scrollPositionRef.current);
-      
+
       // 스타일 제거
       document.body.style.removeProperty('overflow');
       document.body.style.removeProperty('position');
       document.body.style.removeProperty('top');
       document.body.style.removeProperty('width');
       document.documentElement.style.removeProperty('scroll-behavior');
-      
+
       // 다음 프레임에서 스크롤 위치 재확인 (레이아웃 변경 후)
       requestAnimationFrame(() => {
         window.scrollTo(0, scrollPositionRef.current);
