@@ -225,6 +225,8 @@ main {
             flex: 3;
             height: 100%;
             padding: 60px;
+            cursor: url('../../public/icon/icon_close.png') 10 10, auto;
+            
 
             img {
                 display: block;
@@ -246,23 +248,28 @@ main {
             border-radius: 24px;
             padding: 20px;
             padding-bottom: 10px;
+            cursor: default;
 
             .copy_button {
-                font-size: 14px;
-                font-weight: 700;
-                letter-spacing: -0.02em;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 2px;
                 color: #000;
                 background-color: #fff;
                 border: none;
-                padding: 14px 18px;
+                padding: 16px 24px;
                 border-radius: 25px;
                 align-self: flex-end;
+                font-size: 14px;
+                font-weight: 700;
+                letter-spacing: -0.02em;
                 transition: border-radius .3s ease, opacity .3s ease;
 
                 &:hover {
                     cursor: pointer;
                     opacity: 0.8;
-                    border-radius: 15px;
+                    border-radius: 16px;
                 }
             }
 
@@ -352,10 +359,8 @@ main {
 // 프롬프트 복사 성공 메시지 스타일
 .copy_success_message {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    top: 0;
+    left: 0;
     font-size: 32vw;
     font-weight: 700;
     font-style: italic;
