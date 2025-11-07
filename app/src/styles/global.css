@@ -128,9 +128,9 @@ main section .title .sub_title {
 }
 main section .items {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  -moz-column-gap: 16px;
-       column-gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  -moz-column-gap: 20px;
+       column-gap: 20px;
   row-gap: 40px;
   margin-top: 40px;
   margin-bottom: 80px;
@@ -148,10 +148,6 @@ main section .items .item .img {
   background-color: #f8f8f8;
   overflow: hidden;
   cursor: pointer;
-  transition: opacity 0.2s;
-}
-main section .items .item .img:hover {
-  opacity: 0.9;
 }
 main section .items .item .img img {
   display: block;
@@ -161,6 +157,12 @@ main section .items .item .img img {
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
+  transition: transform 0.4s ease, filter 0.4s ease;
+  will-change: transform, filter;
+}
+main section .items .item .img:hover img {
+  transform: scale(1.02);
+  filter: blur(2px);
 }
 main section .items .item .img_title {
   font-size: 12px;
@@ -175,14 +177,12 @@ main .image_viewer_overlay {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: #fff;
+  background-color: #0D0D0D;
   z-index: 1000;
 }
 main section.img_viewer {
   padding: 20px;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
   gap: 20px;
   height: 100vh;
   position: relative;
@@ -190,6 +190,7 @@ main section.img_viewer {
 main section.img_viewer .img_src {
   flex: 3;
   height: 100%;
+  padding: 60px;
 }
 main section.img_viewer .img_src img {
   display: block;
@@ -197,118 +198,157 @@ main section.img_viewer .img_src img {
   height: 100%;
   -o-object-fit: contain;
      object-fit: contain;
-  -o-object-position: top left;
-     object-position: top left;
+  -o-object-position: center;
+     object-position: center;
 }
-main section.img_viewer .img_detail_wrap {
+main section.img_viewer .prompt_wrap {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-}
-main section.img_viewer .img_detail_wrap .img_detail {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-  line-height: 1.3em;
-  padding: 16px;
-  padding-top: 10px;
-  background-color: #FAFAFA;
-  border: 1px solid #F2F2F2;
-  border-radius: 10px;
+  gap: 40px;
+  background-color: #1D1D1D;
+  border-radius: 24px;
+  padding: 20px;
+  padding-bottom: 10px;
+  cursor: default;
 }
-main section.img_viewer .img_detail_wrap .img_detail .wrap_title {
-  color: #A8ABB2;
-}
-main section.img_viewer .img_detail_wrap .img_detail .img_description {
+main section.img_viewer .prompt_wrap .button_wrap {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   gap: 8px;
+  width: 100%;
 }
-main section.img_viewer .img_detail_wrap .img_detail .img_description:hover .img_prompt {
-  color: #A22D1D;
-  cursor: pointer;
-}
-main section.img_viewer .img_detail_wrap .img_detail .img_description:hover .copy_icon {
-  cursor: pointer;
-}
-main section.img_viewer .img_detail_wrap .img_detail .img_description:hover .copy_icon svg path {
-  stroke: #A22D1D;
-}
-main section.img_viewer .img_detail_wrap .img_detail .img_description .img_prompt {
-  color: #5C6170;
-  max-height: 75vh;
-  overflow-y: auto;
-}
-main section.img_viewer .img_detail_wrap .img_detail .img_description .img_prompt::-webkit-scrollbar {
-  width: 6px;
-}
-main section.img_viewer .img_detail_wrap .img_detail .img_description .img_prompt::-webkit-scrollbar-track {
-  background: transparent;
-}
-main section.img_viewer .img_detail_wrap .img_detail .img_description .img_prompt::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 3px;
-}
-main section.img_viewer .img_detail_wrap .img_detail .img_description .img_prompt::-webkit-scrollbar-thumb:hover {
-  background: #999;
-}
-main section.img_viewer .img_detail_wrap .img_detail .img_description .copy_icon {
-  align-self: flex-end;
-}
-main section.img_viewer .img_detail_wrap .img_detail .img_description .copy_icon svg {
-  display: block;
-  width: 20px;
-  height: 20px;
-}
-main section.img_viewer .img_detail_wrap .close_button {
-  background-color: #000;
+main section.img_viewer .prompt_wrap .button_wrap .close_button {
+  background-color: #242424;
   border: none;
   padding: 10px;
-  border-radius: 8px;
-  font-size: 14px;
-  font-weight: 500;
-  color: #fff;
+  border-radius: 100%;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: filter 0.3s ease;
+  position: relative;
 }
-main section.img_viewer .img_detail_wrap .close_button:hover {
+main section.img_viewer .prompt_wrap .button_wrap .close_button svg {
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+main section.img_viewer .prompt_wrap .button_wrap .close_button:hover {
+  filter: brightness(1.2);
+}
+main section.img_viewer .prompt_wrap .button_wrap .copy_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2px;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  padding: 16px 24px;
+  border-radius: 25px;
+  align-self: flex-end;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  transition: border-radius 0.3s ease, opacity 0.3s ease;
+}
+main section.img_viewer .prompt_wrap .button_wrap .copy_button:hover {
+  cursor: pointer;
   opacity: 0.8;
+  border-radius: 16px;
 }
-main section.img_viewer .mobile_button {
+main section.img_viewer .prompt_wrap:has(.copy_button:hover) .prompt_content .prompt_description {
+  color: #d2d2d2;
+}
+main section.img_viewer .prompt_wrap .prompt_content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+  overflow-y: auto;
+}
+main section.img_viewer .prompt_wrap .prompt_content .prompt_title {
+  font-family: "Instrument Serif", serif;
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+main section.img_viewer .prompt_wrap .prompt_content .prompt_description {
+  font-size: 14px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.2em;
+  color: #aaa;
+  overflow-y: auto;
+  scrollbar-width: none;
+  transition: color 0.5s ease;
+}
+main section.img_viewer .prompt_wrap .prompt_content .prompt_description::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile_button {
   display: none;
   justify-content: center;
   align-items: center;
+  gap: 8px;
   position: absolute;
   bottom: 24px;
   left: 50%;
-  padding: 0 8px;
-  gap: 4px;
   transform: translateX(-50%);
-  background-color: #000;
-  border-radius: 16px;
+  background-color: rgba(17, 17, 17, 0.5);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  padding: 4px;
+  border-radius: 100px;
 }
-main section.img_viewer .mobile_button .mbtn {
+.mobile_button .mobile_copy_button {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #000;
+  background-color: #fff;
+  border: none;
+  padding: 12px 16px;
+  border-radius: 100px;
+}
+.mobile_button .mobile_copy_button:hover {
+  cursor: pointer;
+}
+.mobile_button .mobile_close_button {
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
   background-color: transparent;
   border: none;
-  margin: 8px;
-  padding: 4px;
+  padding: 12px 16px;
+  border-radius: 100px;
+  margin-right: 8px;
+}
+.mobile_button .mobile_close_button:hover {
   cursor: pointer;
-  transition: opacity 0.2s;
 }
-main section.img_viewer .mobile_button .mbtn:hover {
-  opacity: 0.8;
-}
-main section.img_viewer .mobile_button .mbtn svg {
-  display: block;
-  width: 28px;
-  height: 28px;
+
+.copy_success_message {
+  font-style: italic;
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-size: 32vw;
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  color: #00FF37;
+  z-index: 1001;
+  pointer-events: none;
 }
 
 @media (max-width: 768px) {
@@ -324,14 +364,17 @@ main section.img_viewer .mobile_button .mbtn svg {
   main section.img_viewer {
     padding: 0;
   }
+  main section.img_viewer .img_src {
+    padding: 0;
+  }
+  main section.img_viewer .prompt_wrap {
+    display: none;
+  }
   main section.img_viewer .mobile_button {
     display: flex;
   }
   main section.img_viewer .img_src img {
     -o-object-position: center;
        object-position: center;
-  }
-  main section.img_viewer .img_detail_wrap {
-    display: none;
   }
 }/*# sourceMappingURL=global.css.map */

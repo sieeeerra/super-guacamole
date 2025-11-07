@@ -7,23 +7,6 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
   // 프롬프트 복사 성공 상태 관리
   const [isCopied, setIsCopied] = useState(false);
 
-  // ESC 키로 모달 닫기
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose();
-      }
-    };
-
-    if (isOpen) {
-      document.addEventListener('keydown', handleEscape);
-    }
-
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-    };
-  }, [isOpen, onClose]);
-
   // 모달 열림/닫힘에 따른 배경 스크롤 제어
   useEffect(() => {
     if (isOpen) {

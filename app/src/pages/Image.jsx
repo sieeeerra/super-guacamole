@@ -59,7 +59,7 @@ export default function Image() {
       <main>
         <section>
           <div className="head">
-            <span className="head_title">이미지를 불러오는 중...</span>
+            <span className="head_title"></span>
           </div>
         </section>
       </main>
@@ -81,32 +81,32 @@ export default function Image() {
 
   return (
     <main>
-      <section>
-        <div className="head">
-          <span className="head_title">All images in this document were produced by generative artificial intelligence and do not depict real photographs. Use of these images as design resources is permitted only within the scope of the applicable license terms, including restrictions on commercial use, redistribution, modification, or derivative works where specified.</span>
-        </div>
-      </section>
-      {/* 배열을 map으로 순회하여 동적으로 섹션 생성 (mainTitle과 img_model이 일치하는 데이터만 필터링) */}
-      {personaSections.map((persona, index) => {
-        // mainTitle과 img_model이 일치하는 데이터만 필터링
-        const filteredItems = imageItems.filter(item => item.img_model === persona.mainTitle);
-        
-        return (
-          <section key={index}>
-            <Title
-              mainTitle={persona.mainTitle}
-              subTitle={persona.subTitle}
-            />
-            <Items items={filteredItems} onItemClick={handleItemClick} />
-          </section>
-        );
-      })}
-      {/* 이미지 뷰어 모달 */}
-      <ImageViewer
-        isOpen={isViewerOpen}
-        imageData={selectedImage}
-        onClose={handleCloseViewer}
-      />
+        <section>
+          <div className="head">
+            <span className="head_title">All images in this document were produced by generative artificial intelligence and do not depict real photographs. Use of these images as design resources is permitted only within the scope of the applicable license terms, including restrictions on commercial use, redistribution, modification, or derivative works where specified.</span>
+          </div>
+        </section>
+        {/* 배열을 map으로 순회하여 동적으로 섹션 생성 (mainTitle과 img_model이 일치하는 데이터만 필터링) */}
+        {personaSections.map((persona, index) => {
+          // mainTitle과 img_model이 일치하는 데이터만 필터링
+          const filteredItems = imageItems.filter(item => item.img_model === persona.mainTitle);
+          
+          return (
+            <section key={index}>
+              <Title
+                mainTitle={persona.mainTitle}
+                subTitle={persona.subTitle}
+              />
+              <Items items={filteredItems} onItemClick={handleItemClick} />
+            </section>
+          );
+        })}
+        {/* 이미지 뷰어 모달 */}
+        <ImageViewer
+          isOpen={isViewerOpen}
+          imageData={selectedImage}
+          onClose={handleCloseViewer}
+        />
     </main>
   );
 }
