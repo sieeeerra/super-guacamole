@@ -207,6 +207,12 @@ main section.greeting .greeting_text .accent:hover {
   text-decoration: underline;
   cursor: pointer;
 }
+main section.greeting .greeting_text .copied-text {
+  color: #00FF37;
+}
+main section.greeting .greeting_text span[style*="display: inline-block"] {
+  vertical-align: top;
+}
 main .image_viewer_overlay {
   position: fixed;
   top: 0;

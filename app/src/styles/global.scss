@@ -240,6 +240,16 @@ main {
                     cursor: pointer;
                 }
             }
+
+            // 복사 성공 시 텍스트 색상 변경
+            .copied-text {
+                color: #00FF37;
+            }
+
+            // 텍스트 변환 애니메이션을 위한 span (공통 스타일)
+            span[style*="display: inline-block"] {
+                vertical-align: top;
+            }
         }
     }
 
@@ -554,5 +564,6 @@ section.footer {
         }
     }
 }
+
 
         
