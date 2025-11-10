@@ -99,13 +99,13 @@ main section {
   padding: 40px;
   color: #171717;
 }
-main section .head {
+main section .page_head {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   padding-top: 80px;
 }
-main section .head .head_title {
+main section .page_head .main_title {
   flex: 1;
   font-size: 48px;
   font-weight: 700;
@@ -113,7 +113,7 @@ main section .head .head_title {
   line-height: 1;
   text-transform: uppercase;
 }
-main section .head .sub_title {
+main section .page_head .sub_title {
   flex: 1;
   font-family: "Merriweather", serif;
   font-size: 16px;
@@ -186,32 +186,6 @@ main section .items .item .img_title {
   letter-spacing: -0.02em;
   text-transform: uppercase;
   color: #5C6170;
-}
-main section.greeting {
-  padding-top: 70px;
-  display: flex;
-  min-height: 100vh;
-}
-main section.greeting .greeting_text {
-  font-size: 3.1vw;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 2.8vw;
-  text-transform: uppercase;
-  text-align: justify;
-}
-main section.greeting .greeting_text .accent {
-  color: #00FF37;
-}
-main section.greeting .greeting_text .accent:hover {
-  text-decoration: underline;
-  cursor: pointer;
-}
-main section.greeting .greeting_text .copied-text {
-  color: #00FF37;
-}
-main section.greeting .greeting_text span[style*="display: inline-block"] {
-  vertical-align: top;
 }
 main .image_viewer_overlay {
   position: fixed;
@@ -332,8 +306,7 @@ main section.img_viewer .prompt_wrap .prompt_content .prompt_description {
 main section.img_viewer .prompt_wrap .prompt_content .prompt_description::-webkit-scrollbar {
   display: none;
 }
-
-.mobile_button {
+main section.img_viewer .mobile_button {
   display: none;
   justify-content: center;
   align-items: center;
@@ -348,7 +321,7 @@ main section.img_viewer .prompt_wrap .prompt_content .prompt_description::-webki
   padding: 4px;
   border-radius: 100px;
 }
-.mobile_button .mobile_copy_button {
+main section.img_viewer .mobile_button .mobile_copy_button {
   font-size: 12px;
   font-weight: 700;
   letter-spacing: -0.02em;
@@ -358,10 +331,10 @@ main section.img_viewer .prompt_wrap .prompt_content .prompt_description::-webki
   padding: 12px 16px;
   border-radius: 100px;
 }
-.mobile_button .mobile_copy_button:hover {
+main section.img_viewer .mobile_button .mobile_copy_button:hover {
   cursor: pointer;
 }
-.mobile_button .mobile_close_button {
+main section.img_viewer .mobile_button .mobile_close_button {
   height: -moz-fit-content;
   height: fit-content;
   width: -moz-fit-content;
@@ -376,8 +349,35 @@ main section.img_viewer .prompt_wrap .prompt_content .prompt_description::-webki
   border-radius: 100px;
   margin-right: 8px;
 }
-.mobile_button .mobile_close_button:hover {
+main section.img_viewer .mobile_button .mobile_close_button:hover {
   cursor: pointer;
+}
+main section.greeting {
+  padding-top: 70px;
+  display: flex;
+  min-height: 100vh;
+}
+main section.greeting .greeting_text {
+  font-size: 3.1vw;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 2.8vw;
+  text-transform: uppercase;
+  text-align: justify;
+}
+main section.greeting .greeting_text .accent {
+  color: #00FF37;
+}
+main section.greeting .greeting_text .accent:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+main section.greeting .greeting_text .copied-text {
+  color: #00FF37;
+}
+main section.greeting .greeting_text span[style*="display: inline-block"] {
+  vertical-align: top;
+  transition: color 0.6s ease;
 }
 
 .copy_success_message {
@@ -391,6 +391,56 @@ main section.img_viewer .prompt_wrap .prompt_content .prompt_description::-webki
   color: #00FF37;
   z-index: 1001;
   pointer-events: none;
+}
+
+section.hero_vod {
+  padding: 0;
+  display: flex;
+  height: 100vh;
+  background-color: red;
+}
+section.hero_vod video {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+}
+section.hero_vod .vod_caption {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(17, 17, 17, 0.5);
+  padding: 20px 20px;
+  border-radius: 50px;
+  color: #fff;
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+  transition: transform 1s ease-in-out;
+}
+section.hero_vod .vod_caption span {
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  text-transform: capitalize;
+}
+section.hero_vod .vod_caption svg {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+section.hero_vod .vod_caption svg path {
+  stroke: currentColor;
+  stroke-width: 2;
+}
+section.hero_vod .vod_caption:hover {
+  transform: translateX(-50%) scale(1.1);
 }
 
 section.footer {
@@ -446,7 +496,7 @@ section.footer .bottom {
   font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 1;
-  color: #000;
+  color: #929292;
   margin-top: 120px;
 }
 section.footer .bottom .updated {
@@ -456,7 +506,6 @@ section.footer .bottom .updated {
 section.footer .bottom .copyright {
   flex: 1;
   text-align: right;
-  color: #b2b2b2;
 }
 
 @media (max-width: 768px) {

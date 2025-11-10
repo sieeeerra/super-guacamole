@@ -4,6 +4,7 @@ import Title from '../components/Title.jsx';
 import Items from '../components/Items.jsx';
 import ImageViewer from '../components/ImageViewer.jsx';
 import Footer from '../components/Footer.jsx';
+import PageHead from '../components/PageHead.jsx';
 import { fetchImageItems, personaSections } from '../data/imageData.js';
 // global.scss는 main.jsx에서 전역으로 import됨
 
@@ -58,9 +59,7 @@ export default function Image() {
     return (
       <main>
         <section>
-          <div className="head">
-            <span className="head_title"></span>
-          </div>
+          <PageHead mainTitle="" />
         </section>
       </main>
     );
@@ -71,9 +70,7 @@ export default function Image() {
     return (
       <main>
         <section>
-          <div className="head">
-            <span className="head_title">{error}</span>
-          </div>
+          <PageHead mainTitle={error} />
         </section>
       </main>
     );
@@ -82,13 +79,17 @@ export default function Image() {
   return (
     <main>
       <section>
-        <div className="head">
-          <span className="head_title">Image</span>
-          <span className="sub_title">I primarily use popular generative AI tools to create images and explore
-                    their practical applications in design. I focus on understanding the value and potential of AI to
-                    deliver high-quality results efficiently, even with limited time and resources. Additionally, I
-                    document prompts and practical tips to optimize outcomes.<br /><br />All images in this document were produced by generative artificial intelligence and do not depict real photographs. Use of these images as design resources is permitted only within the scope of the applicable license terms, including restrictions on commercial use, redistribution, modification, or derivative works where specified.</span>
-        </div>
+        <PageHead 
+          mainTitle="Image"
+          subTitle={
+            <>
+              I primarily use popular generative AI tools to create images and explore
+              their practical applications in design. I focus on understanding the value and potential of AI to
+              deliver high-quality results efficiently, even with limited time and resources. Additionally, I
+              document prompts and practical tips to optimize outcomes.<br /><br />All images in this document were produced by generative artificial intelligence and do not depict real photographs. Use of these images as design resources is permitted only within the scope of the applicable license terms, including restrictions on commercial use, redistribution, modification, or derivative works where specified.
+            </>
+          }
+        />
       </section>
       {/* 배열을 map으로 순회하여 동적으로 섹션 생성 (mainTitle과 img_model이 일치하는 데이터만 필터링) */}
       {personaSections.map((persona, index) => {

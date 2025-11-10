@@ -24,7 +24,7 @@ export default function Header() {
         </ul>
         <ul className="menu">
           <li><Link to="/image">Image,</Link></li>
-          <li><a href="">Video</a></li>
+          <li><Link to="/video">Video</Link></li>
         </ul>
         <ul className="menu">
           <li><Link to="/contact">Contact</Link></li>
