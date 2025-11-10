@@ -1,5 +1,13 @@
 import { supabase } from '../lib/supabase';
 
+// Persona 섹션 데이터 (personaData.js에서 통합)
+export const personaSections = [
+  {
+    mainTitle: 'image',
+    subTitle: ""
+  },
+];
+
 // Supabase의 imageData 테이블에서 모든 이미지 데이터 조회
 export async function fetchImageItems() {
   try {

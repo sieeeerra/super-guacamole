@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import Title from '../components/Title.jsx';
 import Items from '../components/Items.jsx';
 import ImageViewer from '../components/ImageViewer.jsx';
-import { fetchImageItems } from '../data/imageData.js';
-import { personaSections } from '../data/personaData.js';
+import Footer from '../components/Footer.jsx';
+import { fetchImageItems, personaSections } from '../data/imageData.js';
 // global.scss는 main.jsx에서 전역으로 import됨
 
 export default function Image() {
@@ -12,7 +12,7 @@ export default function Image() {
   const [imageItems, setImageItems] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  
+
   // 선택된 이미지 데이터와 뷰어 열림 상태 관리
   const [selectedImage, setSelectedImage] = useState(null);
   const [isViewerOpen, setIsViewerOpen] = useState(false);
@@ -25,7 +25,7 @@ export default function Image() {
         setError(null);
         const data = await fetchImageItems();
         setImageItems(data);
-        
+
         if (!data || data.length === 0) {
           setError('데이터가 없습니다. 데이터베이스를 확인하세요.');
         }
@@ -37,7 +37,7 @@ export default function Image() {
         setIsLoading(false);
       }
     }
-    
+
     loadImageData();
   }, []);
 
@@ -81,32 +81,38 @@ export default function Image() {
 
   return (
     <main>
-        <section>
-          <div className="head">
-            <span className="head_title">All images in this document were produced by generative artificial intelligence and do not depict real photographs. Use of these images as design resources is permitted only within the scope of the applicable license terms, including restrictions on commercial use, redistribution, modification, or derivative works where specified.</span>
-          </div>
-        </section>
-        {/* 배열을 map으로 순회하여 동적으로 섹션 생성 (mainTitle과 img_model이 일치하는 데이터만 필터링) */}
-        {personaSections.map((persona, index) => {
-          // mainTitle과 img_model이 일치하는 데이터만 필터링
-          const filteredItems = imageItems.filter(item => item.img_model === persona.mainTitle);
-          
-          return (
-            <section key={index}>
-              <Title
-                mainTitle={persona.mainTitle}
-                subTitle={persona.subTitle}
-              />
-              <Items items={filteredItems} onItemClick={handleItemClick} />
-            </section>
-          );
-        })}
-        {/* 이미지 뷰어 모달 */}
-        <ImageViewer
-          isOpen={isViewerOpen}
-          imageData={selectedImage}
-          onClose={handleCloseViewer}
-        />
+      <section>
+        <div className="head">
+          <span className="head_title">Image</span>
+          <span className="sub_title">I primarily use popular generative AI tools to create images and explore
+                    their practical applications in design. I focus on understanding the value and potential of AI to
+                    deliver high-quality results efficiently, even with limited time and resources. Additionally, I
+                    document prompts and practical tips to optimize outcomes.<br /><br />All images in this document were produced by generative artificial intelligence and do not depict real photographs. Use of these images as design resources is permitted only within the scope of the applicable license terms, including restrictions on commercial use, redistribution, modification, or derivative works where specified.</span>
+        </div>
+      </section>
+      {/* 배열을 map으로 순회하여 동적으로 섹션 생성 (mainTitle과 img_model이 일치하는 데이터만 필터링) */}
+      {personaSections.map((persona, index) => {
+        // mainTitle과 img_model이 일치하는 데이터만 필터링
+        const filteredItems = imageItems.filter(item => item.img_model === persona.mainTitle);
+
+        return (
+          <section key={index}>
+            <Title
+              mainTitle={persona.mainTitle}
+              subTitle={persona.subTitle}
+            />
+            <Items items={filteredItems} onItemClick={handleItemClick} />
+          </section>
+        );
+      })}
+      {/* 이미지 뷰어 모달 */}
+      <ImageViewer
+        isOpen={isViewerOpen}
+        imageData={selectedImage}
+        onClose={handleCloseViewer}
+      />
+      {/* Footer 컴포넌트 */}
+      <Footer />
     </main>
   );
 }

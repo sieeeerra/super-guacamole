@@ -38,7 +38,7 @@ header {
   top: 0;
   left: 0;
   right: 0;
-  padding: 8px 40px;
+  padding: 16px 40px;
   mix-blend-mode: difference;
   z-index: 99;
 }
@@ -46,16 +46,21 @@ header .logo {
   flex: 1;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  width: 16px;
+  height: 16px;
 }
 header .logo a {
-  display: inline-block;
+  display: block;
   width: -moz-fit-content;
   width: fit-content;
   height: -moz-fit-content;
   height: fit-content;
 }
-header .logo a img {
+header .logo a svg {
   display: block;
+  width: 16px;
+  height: 16px;
 }
 header nav {
   flex: 3;
@@ -65,13 +70,17 @@ header nav ul {
   flex: 1;
   display: flex;
   justify-content: flex-start;
+  align-items: center;
   gap: 2px;
 }
 header nav ul li {
-  font-size: 18px;
-  font-weight: 500;
+  font-family: "Azeret Mono", sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
   color: #fff;
-  transition: 0.3s ease-out;
+  transition: 0.2s ease-out;
 }
 header nav .menu:last-child {
   justify-content: flex-end;
@@ -93,16 +102,23 @@ main section {
 main section .head {
   display: flex;
   justify-content: flex-start;
-  align-items: center;
-  padding-top: 120px;
-  padding-bottom: 80px;
+  align-items: flex-start;
+  padding-top: 80px;
 }
 main section .head .head_title {
-  flex: 0.5;
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  line-height: 1.2em;
+  flex: 1;
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+main section .head .sub_title {
+  flex: 1;
+  font-family: "Merriweather", serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5em;
 }
 main section .title {
   display: flex;
@@ -110,6 +126,7 @@ main section .title {
   align-items: flex-end;
 }
 main section .title .main_title {
+  display: none;
   flex: 1;
   font-size: 64px;
   font-weight: 700;
@@ -132,8 +149,7 @@ main section .items {
   -moz-column-gap: 20px;
        column-gap: 20px;
   row-gap: 40px;
-  margin-top: 40px;
-  margin-bottom: 80px;
+  margin-bottom: 120px;
 }
 main section .items .item {
   display: flex;
@@ -267,7 +283,7 @@ main section.img_viewer .prompt_wrap .prompt_content {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 4px;
+  gap: 6px;
   overflow-y: auto;
 }
 main section.img_viewer .prompt_wrap .prompt_content .prompt_title {
@@ -351,16 +367,73 @@ main section.img_viewer .prompt_wrap .prompt_content .prompt_description::-webki
   pointer-events: none;
 }
 
+section.footer {
+  padding: 40px;
+  padding-bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  background-color: #F9F9F9;
+}
+section.footer .today {
+  font-family: "Azeret Mono", sans-serif;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: clamp(14px, 2vw, 24px);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1;
+}
+section.footer .today .date {
+  flex: 1;
+}
+section.footer .today .time {
+  flex: 1;
+  font-variant-numeric: tabular-nums;
+}
+section.footer .text {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 8px;
+  font-size: 10vw;
+  font-weight: 900;
+  letter-spacing: -0.06em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  text-align: center;
+}
+section.footer .text .text_line {
+  flex: 1;
+}
+section.footer .bottom {
+  font-family: "Azeret Mono", sans-serif;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1;
+  color: #000;
+  margin-top: 120px;
+}
+section.footer .bottom .updated {
+  flex: 1;
+  white-space: nowrap;
+}
+section.footer .bottom .copyright {
+  flex: 1;
+  text-align: right;
+  color: #b2b2b2;
+}
+
 @media (max-width: 768px) {
-  main section .title {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-  main section .title .sub_title {
-    text-align: left;
-  }
   main section.img_viewer {
     padding: 0;
   }
@@ -376,5 +449,10 @@ main section.img_viewer .prompt_wrap .prompt_content .prompt_description::-webki
   main section.img_viewer .img_src img {
     -o-object-position: center;
        object-position: center;
+  }
+  main section.footer .text {
+    font-size: 18vw;
+    flex-direction: column;
+    gap: 0;
   }
 }/*# sourceMappingURL=global.css.map */
