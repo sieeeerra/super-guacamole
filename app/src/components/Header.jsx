@@ -27,7 +27,7 @@ export default function Header() {
           <li><a href="">Video</a></li>
         </ul>
         <ul className="menu">
-          <li><a href="">Contact</a></li>
+          <li><Link to="/contact">Contact</Link></li>
         </ul>
       </nav>
     </header>
