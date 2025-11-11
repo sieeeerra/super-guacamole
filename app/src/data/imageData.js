@@ -1,6 +1,6 @@
 import { supabase } from '../lib/supabase';
 
-// Persona 섹션 데이터 (personaData.js에서 통합)
+// Persona 섹션 데이터
 export const personaSections = [
   {
     mainTitle: 'image',

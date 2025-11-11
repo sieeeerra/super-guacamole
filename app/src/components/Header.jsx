@@ -20,7 +20,7 @@ export default function Header() {
       </div>
       <nav>
         <ul className="menu">
-          <li><a href="">Work</a></li>
+          <li><Link to="/work">Work</Link></li>
         </ul>
         <ul className="menu">
           <li><Link to="/image">Image,</Link></li>
