@@ -65,16 +65,54 @@ Vercel이 자동으로 Vite 프로젝트를 감지합니다. 다음 설정을 �
 
 **중요**: Root Directory를 `app`으로 설정해야 합니다!
 
-### 2.4 환경 변수 설정 (선택사항)
+### 2.4 Supabase 환경 변수 설정
 
-Supabase를 사용하는 경우 환경 변수를 추가해야 합니다:
+이 프로젝트는 Supabase를 사용하므로 환경 변수를 반드시 설정해야 합니다.
 
-1. "Environment Variables" 섹션으로 이동
-2. 필요한 환경 변수 추가:
-   - `VITE_SUPABASE_URL`
-   - `VITE_SUPABASE_ANON_KEY`
-   - 기타 필요한 환경 변수
-3. 각 환경 변수에 대해 적용할 환경 선택 (Production, Preview, Development)
+#### 2.4.1 Supabase 프로젝트에서 환경 변수 가져오기
+
+1. [Supabase 대시보드](https://app.supabase.com)에 로그인
+2. 프로젝트 선택 (또는 새 프로젝트 생성)
+3. 좌측 메뉴에서 **Settings** → **API** 클릭
+4. 다음 정보를 복사합니다:
+   - **Project URL**: `VITE_SUPABASE_URL` 값으로 사용
+   - **anon public** 키: `VITE_SUPABASE_ANON_KEY` 값으로 사용
+
+#### 2.4.2 Vercel에 환경 변수 추가하기
+
+1. Vercel 프로젝트 설정 화면에서 **"Environment Variables"** 섹션으로 스크롤
+2. 다음 환경 변수를 하나씩 추가합니다:
+
+   **첫 번째 환경 변수:**
+   - **Key**: `VITE_SUPABASE_URL`
+   - **Value**: Supabase에서 복사한 Project URL (예: `https://xxxxx.supabase.co`)
+   - **Environment**: Production, Preview, Development 모두 체크
+   - **"Add"** 버튼 클릭
+
+   **두 번째 환경 변수:**
+   - **Key**: `VITE_SUPABASE_ANON_KEY`
+   - **Value**: Supabase에서 복사한 anon public 키
+   - **Environment**: Production, Preview, Development 모두 체크
+   - **"Add"** 버튼 클릭
+
+3. 추가된 환경 변수 확인:
+   - 두 개의 환경 변수가 목록에 표시되어야 합니다
+   - 각 환경 변수 옆에 적용된 환경(Production, Preview, Development)이 표시됩니다
+
+#### 2.4.3 환경 변수 적용 범위 설명
+
+- **Production**: `main` 브랜치 배포 시 사용
+- **Preview**: 다른 브랜치나 Pull Request 배포 시 사용
+- **Development**: Vercel CLI로 로컬 개발 시 사용
+
+**권장사항**: Supabase를 사용하는 경우 세 가지 환경 모두에 동일한 환경 변수를 설정하는 것을 권장합니다.
+
+#### 2.4.4 환경 변수 확인 방법
+
+환경 변수 추가 후:
+1. **"Deploy"** 버튼을 클릭하여 배포 시작
+2. 배포 로그에서 환경 변수가 올바르게 로드되었는지 확인
+3. 배포된 사이트에서 Supabase 연결이 정상적으로 작동하는지 테스트
 
 ### 2.5 배포 시작
 
@@ -117,6 +155,23 @@ Supabase를 사용하는 경우 환경 변수를 추가해야 합니다:
    npm run build
    ```
 3. **환경 변수 확인**: 필요한 환경 변수가 모두 설정되었는지 확인
+
+### Supabase 환경 변수 오류
+
+다음 오류가 발생하는 경우 환경 변수가 제대로 설정되지 않은 것입니다:
+- `Supabase 환경 변수가 설정되지 않았습니다. .env 파일을 확인하세요.`
+- `Cannot read properties of undefined`
+
+**해결 방법:**
+1. Vercel 프로젝트 설정 → **Settings** → **Environment Variables**로 이동
+2. 다음 환경 변수가 모두 추가되어 있는지 확인:
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+3. 각 환경 변수가 **Production, Preview, Development** 모두에 적용되어 있는지 확인
+4. 환경 변수 값이 올바른지 확인 (Supabase 대시보드의 Settings → API에서 확인)
+5. 환경 변수를 수정한 경우 **새로운 배포를 트리거**해야 합니다:
+   - 기존 배포를 다시 배포하거나
+   - 코드에 작은 변경사항을 커밋하여 새 배포 시작
 
 ### 라우팅 문제
 
