@@ -1,7 +1,7 @@
 // Footer 컴포넌트: 날짜/시간 동적 표시
 import { useState, useEffect } from 'react';
 
-export default function Footer({ updatedText = "Updated on November 3, 2025" }) {
+export default function Footer({ updatedText = "Updated on November 12, 2025" }) {
   // 현재 날짜와 시간 상태 관리
   const [currentDate, setCurrentDate] = useState('');
   const [currentTime, setCurrentTime] = useState('');
@@ -57,12 +57,11 @@ export default function Footer({ updatedText = "Updated on November 3, 2025" }) 
         <span className="time">{currentTime}</span>
       </div>
       <div className="text">
-        <span className="text_line">try hard</span>
-        <span className="text_line">be corny</span>
+        
       </div>
       <div className="bottom">
         <div className="updated">{updatedText}</div>
-        <div className="copyright">SITE NOTICE</div>
+        <div className="site_info">SITE NOTICE</div>
       </div>
     </section>
   );

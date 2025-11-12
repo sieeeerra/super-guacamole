@@ -9,13 +9,13 @@ export default function Work() {
     <>
     <style>{`
       .work_page_head {
-        min-height: 70vh;
+        min-height: 50vh;
       }
     `}</style>
       <main>
           <section className="work_page_head">
             <PageHead
-              mainTitle="how to work"
+              mainTitle="work"
               subTitle="I prioritize solving problems by balancing usability with business objectives, rather than focusing solely on creating visually appealing screens. With a comprehensive understanding of product and development processes, I design solutions that harmonize practicality and creativity. These solutions transform ideas into meaningful, impactful user experiences."
             />
           </section>

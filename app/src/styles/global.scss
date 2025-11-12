@@ -162,7 +162,7 @@ main {
                 left: 50%;
                 transform: translateX(-50%);
                 font-size: 14px;
-                font-weight: 500;
+                font-weight: 400;
                 letter-spacing: -0.01em;
                 color: $text-white;
                 z-index: 5;
@@ -221,8 +221,7 @@ section {
     .items {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        column-gap: 20px;
-        row-gap: 40px;
+        gap: 10px;
         margin-bottom: 120px;
 
         .item {
@@ -573,24 +572,26 @@ section.greeting {
 
 // Footer 컴포넌트
 section.footer {
-    padding: 40px;
-    padding-bottom: 16px;
+    margin: 40px;
+    margin-bottom: 20px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
-    width: 100%;
+    gap: 80px;
     background-color: #F9F9F9;
+    border-radius: 20px;
 
     .today {
         font-family: "Azeret Mono", sans-serif;
         display: flex;
         align-items: center;
         width: 100%;
-        font-size: clamp(14px, 2vw, 24px);
-        font-weight: 500;
-        letter-spacing: -0.01em;
+        font-size: clamp(14px, 2vw, 16px);
+        font-weight: 400;
+        letter-spacing: -0.02em;
         line-height: 1;
+        ;
 
         .date {
             flex: 1;
@@ -602,47 +603,26 @@ section.footer {
         }
     }
 
-    .text {
-        display: flex;
-        align-items: center;
-        width: 100%;
-        gap: 8px;
-        font-size: 10vw;
-        font-weight: 900;
-        letter-spacing: -0.06em;
-        line-height: 1;
-        color: #EAEAEA;
-        text-transform: uppercase;
-        white-space: nowrap;
-        text-align: center;
-
-        .text_line {
-            flex: 1;
-        }
-    }
-
     .bottom {
         font-family: "Azeret Mono", sans-serif;
         display: flex;
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        font-size: 14px;
+        font-size: clamp(11px, 2vw, 13px);
         font-weight: 300;
         letter-spacing: -0.02em;
         line-height: 1;
-        color: #929292;
-        margin-top: 120px;
 
         .updated {
             flex: 1;
             white-space: nowrap;
-            color: #171717;
         }
 
-        .copyright {
+        .site_info {
             flex: 1;
             text-align: right;
+            color: #929292;
         }
     }
 }
@@ -701,15 +681,7 @@ section.footer {
         }
 
         section.footer {
-            .text {
-                font-size: 18vw;
-                flex-direction: column;
-                gap: 0;
-            }
-
-            .bottom {
-                font-size: 12px;
-            }
+            margin: 20px;
         }
     }
 }

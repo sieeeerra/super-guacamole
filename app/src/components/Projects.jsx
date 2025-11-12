@@ -34,7 +34,7 @@ export default function Projects({ projects }) {
           width: 100%;
           height: 80vh;
           position: relative;
-          margin-bottom: 25vh;
+          // margin-bottom: 25vh;
         }
 
         .project_imgs {
@@ -106,7 +106,7 @@ export default function Projects({ projects }) {
         .item_txt {
           font-size: 24px;
           font-weight: 500;
-          letter-spacing: -0.05em;
+          letter-spacing: -0.04em;
           text-transform: capitalize;
           transition: 0.3s ease-in-out;
           position: relative;
@@ -120,7 +120,7 @@ export default function Projects({ projects }) {
           width: 1.5em;
           height: 0.3em;
           border-radius: 100em;
-          background: #333;
+          background: #00FF37;
           opacity: 0;
           transition: all 0.525s cubic-bezier(0.625, 0.05, 0, 1);
           transform: translate(-60%, -50%) scale(0);
@@ -135,8 +135,13 @@ export default function Projects({ projects }) {
           height: fit-content;
         }
 
-        .item_icon img {
+        .item_icon svg {
           display: block;
+          width: 36px;
+          height: 36px;
+          path{
+            stroke: #333;
+          }
         }
 
         .project_item:hover .item_txt {
@@ -195,10 +200,14 @@ export default function Projects({ projects }) {
             height: fit-content;
           }
 
-          .project .project_items .project_item .item_icon img {
-            width: 32px;
-            height: 32px;
+          .project .project_items .project_item .item_icon svg {
+            width: 24px;
+            height: 24px;
             display: block;
+            path{
+              stroke-width: 2;
+              stroke: #333;
+            }
           }
         }
       `}</style>
@@ -215,13 +224,23 @@ export default function Projects({ projects }) {
         <div className="project_items">
           {projects.map((project, index) => {
             const ItemWrapper = project.link ? 'a' : 'div';
-            const iconSrc = project.link 
-              ? '/icon/arrow_upright.svg' 
-              : '/icon/lock.svg';
-            const iconAlt = project.link 
-              ? 'Arrow Up Right' 
-              : 'Lock';
-            
+
+            // 인라인 SVG 아이콘 컴포넌트
+            const IconSVG = project.link ? (
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 30L30 10" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" />
+                <path d="M13.75 10H30V26.25" stroke="currentColor" stroke-width="1.5" stroke-linejoin="bevel" />
+              </svg>
+            ) : (
+              <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.5 6.25L32.5 33.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="bevel" />
+                <path d="M24.2047 24.625C22.9781 25.7402 21.3587 26.3224 19.7028 26.2435C18.0469 26.1647 16.4902 25.4313 15.375 24.2047C14.2598 22.9781 13.6776 21.3587 13.7565 19.7028C13.8353 18.0469 14.5687 16.4902 15.7953 15.375" stroke="black" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="bevel" />
+                <path d="M21.1766 13.8608C22.5053 14.1153 23.7156 14.794 24.6257 15.7951C25.5357 16.7962 26.0964 18.0655 26.2235 19.4124" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="bevel" />
+                <path d="M32.5953 26.4219C36.0016 23.3719 37.5 20 37.5 20C37.5 20 32.5 8.75002 20 8.75002C18.9175 8.74854 17.8368 8.83634 16.7687 9.01252" stroke="currentColor" stroke-width="1.5" stroke-linecap="square" stroke-linejoin="bevel" />
+                <path d="M11.5625 10.7188C5.19219 13.9437 2.5 20 2.5 20C2.5 20 7.5 31.25 20 31.25C22.9289 31.273 25.8212 30.5981 28.4375 29.2812" stroke="currentColor" stroke-width="1.5" stroke-linejoin="bevel" />
+              </svg>
+            );
+
             return (
               <ItemWrapper
                 key={index}
@@ -230,13 +249,13 @@ export default function Projects({ projects }) {
               >
                 <div className="item_txt">{project.main_title}</div>
                 <div className="item_icon">
-                  <img src={iconSrc} alt={iconAlt} />
+                  {IconSVG}
                 </div>
               </ItemWrapper>
             );
           })}
         </div>
-      </div>
+      </div >
     </>
   );
 }

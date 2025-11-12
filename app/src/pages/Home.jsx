@@ -1,6 +1,7 @@
 // Home - hero 섹션과 WebGL 효과
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import Footer from '../components/Footer.jsx';
 
 // WebGL 효과를 위한 셰이더 코드
 const vertexShader = `void main() {
@@ -548,6 +549,7 @@ export default function Home() {
   }, []);
 
   return (
+    <>
     <main>
       <div className="hero">
         <div className="hero_img" ref={heroImgRef}>
@@ -562,6 +564,8 @@ export default function Home() {
           웹 서비스의 사용자 경험을 설계했습니다. 창의적이고 진취적인 방향으로 꾸준히 성장하고 있습니다. 일을 사랑하고, 함께 성공을 만들어갈 만남을 소중히 생각합니다.
         </div>
       </div>
+      <Footer />
     </main>
+    </>
   );
 }

@@ -137,7 +137,7 @@ main .hero .hero_img .canvas_txt {
   left: 50%;
   transform: translateX(-50%);
   font-size: 14px;
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: -0.01em;
   color: #fff;
   z-index: 5;
@@ -187,9 +187,7 @@ section .title .sub_title {
 section .items {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  -moz-column-gap: 20px;
-       column-gap: 20px;
-  row-gap: 40px;
+  gap: 10px;
   margin-bottom: 120px;
 }
 section .items .item {
@@ -499,23 +497,24 @@ section.greeting .greeting_text span[style*="display: inline-block"] {
 }
 
 section.footer {
-  padding: 40px;
-  padding-bottom: 16px;
+  margin: 40px;
+  margin-bottom: 20px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
-  width: 100%;
+  gap: 80px;
   background-color: #F9F9F9;
+  border-radius: 20px;
 }
 section.footer .today {
   font-family: "Azeret Mono", sans-serif;
   display: flex;
   align-items: center;
   width: 100%;
-  font-size: clamp(14px, 2vw, 24px);
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-size: clamp(14px, 2vw, 16px);
+  font-weight: 400;
+  letter-spacing: -0.02em;
   line-height: 1;
 }
 section.footer .today .date {
@@ -525,44 +524,25 @@ section.footer .today .time {
   flex: 1;
   font-variant-numeric: tabular-nums;
 }
-section.footer .text {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  gap: 8px;
-  font-size: 10vw;
-  font-weight: 900;
-  letter-spacing: -0.06em;
-  line-height: 1;
-  color: #EAEAEA;
-  text-transform: uppercase;
-  white-space: nowrap;
-  text-align: center;
-}
-section.footer .text .text_line {
-  flex: 1;
-}
 section.footer .bottom {
   font-family: "Azeret Mono", sans-serif;
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  font-size: 14px;
+  font-size: clamp(11px, 2vw, 13px);
   font-weight: 300;
   letter-spacing: -0.02em;
   line-height: 1;
-  color: #929292;
-  margin-top: 120px;
 }
 section.footer .bottom .updated {
   flex: 1;
   white-space: nowrap;
-  color: #171717;
 }
-section.footer .bottom .copyright {
+section.footer .bottom .site_info {
   flex: 1;
   text-align: right;
+  color: #929292;
 }
 
 @media (max-width: 768px) {
@@ -602,12 +582,7 @@ section.footer .bottom .copyright {
     -o-object-position: center;
        object-position: center;
   }
-  main section.footer .text {
-    font-size: 18vw;
-    flex-direction: column;
-    gap: 0;
-  }
-  main section.footer .bottom {
-    font-size: 12px;
+  main section.footer {
+    margin: 20px;
   }
 }/*# sourceMappingURL=global.css.map */

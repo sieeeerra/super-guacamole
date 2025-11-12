@@ -14,7 +14,7 @@ export async function fetchImageItems() {
     const { data, error } = await supabase
       .from('imageData')
       .select('*')
-      .order('img_title', { ascending: true }); // img_title 기준 오름차순 정렬
+      .order('img_title', { ascending: false }); // img_title 기준 내림차순 정렬
     
     if (error) {
       console.error('이미지 데이터 조회 오류:', error);

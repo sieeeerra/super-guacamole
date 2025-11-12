@@ -28,12 +28,12 @@ export default function Image() {
         setImageItems(data);
 
         if (!data || data.length === 0) {
-          setError('데이터가 없습니다. 데이터베이스를 확인하세요.');
+          setError('No data found. Please check the database.');
         }
       } catch (err) {
         console.error('이미지 데이터 로딩 실패:', err);
-        const errorMessage = err?.message || '이미지 데이터를 불러오는데 실패했습니다.';
-        setError(`오류: ${errorMessage}`);
+        const errorMessage = err?.message || 'Failed to load image data.';
+        setError(`Error: ${errorMessage}`);
       } finally {
         setIsLoading(false);
       }
@@ -59,7 +59,7 @@ export default function Image() {
     return (
       <main>
         <section>
-          <PageHead mainTitle="" />
+          <PageHead mainTitle="Loading..." />
         </section>
       </main>
     );
