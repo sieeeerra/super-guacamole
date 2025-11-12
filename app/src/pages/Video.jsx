@@ -23,7 +23,7 @@ export default function Video() {
 
           </div>
         </section>
-        <section style={{ minHeight: '120vh' }}>
+        <section style={{ minHeight: '100vh' }}>
           <PageHead
             mainTitle="Video"
             subTitle={

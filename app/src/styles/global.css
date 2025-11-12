@@ -212,12 +212,11 @@ section .items .item .img img {
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-  transition: transform 0.4s ease, filter 0.4s ease;
-  will-change: transform, filter;
+  transition: transform 0.9s cubic-bezier(0, 0, 0.2, 1);
+  will-change: transform;
 }
 section .items .item .img:hover img {
-  transform: scale(1.02);
-  filter: blur(2px);
+  transform: scale(1.2);
 }
 section .items .item .img_title {
   font-size: 12px;
