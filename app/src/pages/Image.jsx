@@ -1,7 +1,7 @@
 // Image 페이지 컴포넌트
 import { useState, useEffect } from 'react';
 import Title from '../components/Title.jsx';
-import Items from '../components/Items.jsx';
+import Items from '../components/ImageItems.jsx';
 import ImageViewer from '../components/ImageViewer.jsx';
 import Footer from '../components/Footer.jsx';
 import PageHead from '../components/PageHead.jsx';
