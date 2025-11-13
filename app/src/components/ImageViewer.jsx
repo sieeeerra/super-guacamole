@@ -53,6 +53,10 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
 
   // 프롬프트 텍스트 복사
   const handleCopyPrompt = () => {
+    // EyeSlash인 경우 복사 막기
+    if (imageData.img_description === 'EyeSlash') {
+      return;
+    }
     if (imageData.img_description) {
       navigator.clipboard.writeText(imageData.img_description)
         .then(() => {
@@ -79,8 +83,7 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
       <section className="img_viewer">
         {/* 모바일 버튼 */}
         <div className="mobile_button">
-          <button className="mobile_copy_button" onClick={handleCopyPrompt}>Copy prompt</button>
-          <button className="mobile_close_button" onClick={onClose}>close</button>
+          <button className="mobile_close_button" onClick={onClose}>Close</button>
         </div>
 
         {/* 이미지 표시 영역 */}
@@ -97,11 +100,29 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
                 <path d="M25 25L7 7" stroke="white" stroke-width="1.5" stroke-linejoin="bevel" />
               </svg>
             </button>
-            <button className="copy_button" onClick={handleCopyPrompt}>Copy prompt</button>
+            <button 
+              className="copy_button" 
+              onClick={handleCopyPrompt}
+              disabled={imageData.img_description === 'EyeSlash'}
+            >
+              Copy prompt
+            </button>
           </div>
           <div className="prompt_content">
             <span className="prompt_title">Prompt</span>
-            <span className="prompt_description">{imageData.img_description || ''}</span>
+            {/* img_description이 'EyeSlash'인 경우 SVG 아이콘 표시, 그 외에는 텍스트 표시 */}
+            {imageData.img_description === 'EyeSlash' ? (
+              <span className="prompt_description">
+                <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="eye_slash_icon">
+                  <path d="M32.5 13.75H7.5C6.80964 13.75 6.25 14.3096 6.25 15V32.5C6.25 33.1904 6.80964 33.75 7.5 33.75H32.5C33.1904 33.75 33.75 33.1904 33.75 32.5V15C33.75 14.3096 33.1904 13.75 32.5 13.75Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M13.75 13.75V8.75C13.75 7.0924 14.4085 5.50269 15.5806 4.33058C16.7527 3.15848 18.3424 2.5 20 2.5C21.6576 2.5 23.2473 3.15848 24.4194 4.33058C25.5915 5.50269 26.25 7.0924 26.25 8.75V13.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                  <path d="M20 20.75V24.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+
+              </span>
+            ) : (
+              <span className="prompt_description">{imageData.img_description || ''}</span>
+            )}
           </div>
         </div>
       </section >

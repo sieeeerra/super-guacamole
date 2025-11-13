@@ -9,7 +9,7 @@ export default function ImageItems({ items, onItemClick }) {
   };
 
   return (
-    <div className="items">
+    <div className="image_items">
       {items.map((item, index) => (
         <div key={index} className="item">
           <div className="img" onClick={() => handleImageClick(item)}>
