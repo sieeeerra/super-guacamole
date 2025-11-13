@@ -21,6 +21,9 @@ export default function App() {
 
   // GA4 페이지뷰 추적: 페이지 전환 시 자동으로 페이지뷰 전송
   useEffect(() => {
+    // 페이지 이동 시 스크롤을 최상단으로 이동
+    window.scrollTo(0, 0);
+    
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('config', 'G-P4R3F1D36V', {
         page_path: location.pathname + location.search,
