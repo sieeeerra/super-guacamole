@@ -4,21 +4,21 @@ export const projects = [
     main_title: '간편결제 사용성 개선',
     sub_title: '',
     date: '2024',
-    link: 'https://rzwydfmqhcdxqauvbajl.supabase.co/storage/v1/object/public/project/project01.pdf',
+    link: '/docs/project01.pdf',
     img: '/img/project01.png'
   },
   {
     main_title: '환불 시스템 기획',
     sub_title: '',
     date: '2024',
-    link: 'https://rzwydfmqhcdxqauvbajl.supabase.co/storage/v1/object/public/project/project02.pdf',
+    link: '/docs/project02.pdf',
     img: '/img/project02.png'
   },
   {
     main_title: '고객센터 사용성 개선',
     sub_title: '',
     date: '2024',
-    link: 'https://rzwydfmqhcdxqauvbajl.supabase.co/storage/v1/object/public/project/project03.pdf',
+    link: '/docs/project03.pdf',
     img: '/img/project03.png'
   },
   {

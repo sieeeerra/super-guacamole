@@ -260,7 +260,6 @@ section.img_viewer .prompt_wrap {
   background-color: #1D1D1D;
   border-radius: 24px;
   padding: 20px;
-  padding-bottom: 10px;
   cursor: default;
 }
 section.img_viewer .prompt_wrap .button_wrap {
@@ -319,7 +318,7 @@ section.img_viewer .prompt_wrap .prompt_content {
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 6px;
+  gap: 10px;
   overflow-y: auto;
   width: 100%;
   height: 100%;
@@ -335,25 +334,30 @@ section.img_viewer .prompt_wrap .prompt_content .prompt_description {
   font-size: 14px;
   font-weight: 300;
   letter-spacing: -0.02em;
-  line-height: 1.2em;
+  line-height: 1.3em;
   color: #aaa;
   overflow-y: auto;
   scrollbar-width: none;
   transition: color 0.5s ease;
   width: 100%;
+  height: 100%;
+  position: relative;
 }
 section.img_viewer .prompt_wrap .prompt_content .prompt_description::-webkit-scrollbar {
   display: none;
 }
 section.img_viewer .prompt_wrap .prompt_content .prompt_description .eye_slash_icon {
   display: block;
-  color: #fcfcfc;
-  margin: 50% auto;
-  width: 48px;
-  height: 48px;
+  color: #999;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  width: 40px;
+  height: 40px;
 }
 section.img_viewer .prompt_wrap .prompt_content .prompt_description .eye_slash_icon path {
-  stroke-width: 1.5px;
+  stroke-width: 2px;
 }
 section.img_viewer .mobile_button {
   display: none;
