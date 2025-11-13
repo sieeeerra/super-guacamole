@@ -32,7 +32,13 @@ export default function Image() {
         }
       } catch (err) {
         console.error('이미지 데이터 로딩 실패:', err);
-        const errorMessage = err?.message || 'Failed to load image data.';
+        // Supabase NOT_FOUND 에러 처리
+        let errorMessage = 'Failed to load image data.';
+        if (err?.code === 'PGRST116' || err?.message?.includes('NOT_FOUND') || err?.message?.includes('404')) {
+          errorMessage = '데이터베이스 테이블을 찾을 수 없습니다. Supabase 설정을 확인하세요.';
+        } else if (err?.message) {
+          errorMessage = err.message;
+        }
         setError(`Error: ${errorMessage}`);
       } finally {
         setIsLoading(false);
