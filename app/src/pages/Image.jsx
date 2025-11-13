@@ -92,7 +92,7 @@ export default function Image() {
               I primarily use popular generative AI tools to create images and explore
               their practical applications in design. I focus on understanding the value and potential of AI to
               deliver high-quality results efficiently, even with limited time and resources. Additionally, I
-              document prompts and practical tips to optimize outcomes.<br /><br />All images in this document were produced by generative artificial intelligence and do not depict real photographs. Use of these images as design resources is permitted only within the scope of the applicable license terms, including restrictions on commercial use, redistribution, modification, or derivative works where specified.
+              document prompts and practical tips to optimize outcomes.<br /><br />All images in this document were produced by generative AI and do not depict real photographs. Use of these images as design resources is permitted only within the scope of the applicable license terms, including restrictions on commercial use, redistribution, modification, or derivative works where specified.
             </>
           }
         />

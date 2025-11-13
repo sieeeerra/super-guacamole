@@ -1,9 +1,9 @@
 // 라우팅 설정: Home, Image, Contact, Video, Work 페이지 라우트 추가
-// 404 Not Found 페이지 라우트 추가
-// NotFound 페이지에서 Header 숨기기
 // GA4 페이지뷰 추적 추가
+// Vercel Web Analytics 추가
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import Header from './components/Header.jsx';
 import Home from './pages/Home.jsx';
 import Work from './pages/Work.jsx';
@@ -40,6 +40,8 @@ export default function App() {
         {/* 존재하지 않는 경로에 대한 404 페이지 */}
         <Route path="*" element={<NotFound />} />
       </Routes>
+      {/* Vercel Web Analytics: 페이지뷰 및 성능 메트릭 자동 수집 */}
+      <Analytics />
     </>
   );
 }
