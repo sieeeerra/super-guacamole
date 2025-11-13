@@ -1,7 +1,8 @@
 // 라우팅 설정: Home, Image, Contact, Video, Work 페이지 라우트 추가
 // 404 Not Found 페이지 라우트 추가
+// NotFound 페이지에서 Header 숨기기
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header.jsx';
 import Home from './pages/Home.jsx';
 import Work from './pages/Work.jsx';
@@ -11,9 +12,15 @@ import Contact from './pages/Contact.jsx';
 import NotFound from './pages/NotFound.jsx';
 
 export default function App() {
+  const location = useLocation();
+  // 정의된 라우트 경로 목록
+  const validPaths = ['/', '/work', '/image', '/video', '/contact'];
+  // 현재 경로가 정의된 라우트인지 확인
+  const showHeader = validPaths.includes(location.pathname);
+
   return (
     <>
-      <Header />
+      {showHeader && <Header />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/work" element={<Work />} />
