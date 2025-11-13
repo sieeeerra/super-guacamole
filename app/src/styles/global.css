@@ -185,29 +185,23 @@ section .title .sub_title {
   color: #929292;
 }
 section .image_items {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 10px;
+  position: relative;
   margin-bottom: 120px;
 }
 section .image_items .item {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-end;
-  gap: 8px;
+  position: absolute;
 }
 section .image_items .item .img {
-  width: auto;
-  aspect-ratio: 3/4;
+  width: 100%;
   background-color: #f8f8f8;
   overflow: hidden;
   cursor: pointer;
+  border-radius: 16px;
 }
 section .image_items .item .img img {
   display: block;
   width: 100%;
-  height: 100%;
+  height: auto;
   -o-object-fit: cover;
      object-fit: cover;
   -o-object-position: center;

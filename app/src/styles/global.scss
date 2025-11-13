@@ -219,29 +219,26 @@ section {
     }
 
     .image_items {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 10px;
+        // Masonry 레이아웃
+        position: relative;
         margin-bottom: 120px;
 
         .item {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            align-items: flex-end;
-            gap: 8px;
+            // Masonry 레이아웃
+            position: absolute;
 
             .img {
-                width: auto;
-                aspect-ratio: 3/4;
+                // Masonry 레이아웃
+                width: 100%;
                 background-color: $box;
                 overflow: hidden;
                 cursor: pointer;
+                border-radius: 16px;
 
                 img {
                     display: block;
                     width: 100%;
-                    height: 100%;
+                    height: auto; // 이미지 비율 유지
                     object-fit: cover;
                     object-position: center;
                     transition: transform .9s cubic-bezier(0, 0, 0.2, 1);
