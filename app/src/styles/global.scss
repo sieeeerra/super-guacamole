@@ -632,6 +632,43 @@ section.footer {
             flex: 1;
             text-align: right;
             color: #929292;
+            position: relative;
+            cursor: help;
+
+            .site_info_tooltip {
+                position: absolute;
+                bottom: calc(100% + 10px);
+                right: 0;
+                background-color: rgba($color: #FAFFA9, $alpha: 0.9);
+                padding: 12px;
+                padding-bottom: 80px;
+                z-index: 10;
+                pointer-events: none;
+                opacity: 0;
+                transform: translateY(10px);
+                transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+                display: flex;
+                flex-direction: column;
+                gap: 8px;
+                justify-content: flex-start;
+                align-items: flex-start;
+
+                span {
+                    font-family: "Inter", sans-serif;
+                    font-size: 14px;
+                    font-weight: 400;
+                    color: #171717;
+                    letter-spacing: -0.03em;
+                    line-height: 1.3em;
+                    text-align: left;
+                    width: 16rem;
+                }
+            }
+
+            &:hover .site_info_tooltip {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     }
 }
