@@ -29,7 +29,7 @@ export default function ImageItems({ items, onItemClick }) {
     const containerWidth = container.offsetWidth;
     const gap = 16; // gap
     const minColumnWidth = 250; // 최소 컬럼 너비 250px
-    
+
     // 컬럼 수 계산
     const columnCount = Math.max(1, Math.floor((containerWidth + gap) / (minColumnWidth + gap)));
     const columnWidth = (containerWidth - (gap * (columnCount - 1))) / columnCount;
@@ -101,22 +101,20 @@ export default function ImageItems({ items, onItemClick }) {
   return (
     <div className="image_items" ref={containerRef}>
       {items.map((item, index) => (
-        <div 
-          key={index} 
+        <div
+          key={index}
           className="item"
           ref={el => itemRefs.current[index] = el}
         >
           <div className="img" onClick={() => handleImageClick(item)}>
-            <img 
-              src={item.img_src} 
+            <img
+              src={item.img_src}
               alt={item.img_title || 'Image'}
               onLoad={handleImageLoad}
               onError={handleImageLoad} // 에러 발생 시에도 카운트 증가
             />
           </div>
-          {/* <div className="img_title">
-            <span>{item.img_title}</span>
-          </div> */}
+          <span className="img_title">{item.img_title}</span>
         </div>
       ))}
     </div>

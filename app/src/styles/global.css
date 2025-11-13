@@ -190,13 +190,16 @@ section .image_items {
 }
 section .image_items .item {
   position: absolute;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 16px;
+}
+section .image_items .item:hover .img img {
+  transform: scale(1.2);
+  opacity: 0.8;
 }
 section .image_items .item .img {
   width: 100%;
-  background-color: #f8f8f8;
-  overflow: hidden;
-  cursor: pointer;
-  border-radius: 16px;
 }
 section .image_items .item .img img {
   display: block;
@@ -206,18 +209,19 @@ section .image_items .item .img img {
      object-fit: cover;
   -o-object-position: center;
      object-position: center;
-  transition: transform 0.9s cubic-bezier(0, 0, 0.2, 1);
-  will-change: transform;
-}
-section .image_items .item .img:hover img {
-  transform: scale(1.2);
+  transition: transform 0.9s cubic-bezier(0, 0, 0.2, 1), opacity 0.3s ease;
+  will-change: transform, opacity;
 }
 section .image_items .item .img_title {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  font-weight: 700;
   text-transform: uppercase;
-  color: #5C6170;
+  background-color: #00FF37;
 }
 
 .image_viewer_overlay {
@@ -240,6 +244,7 @@ section.img_viewer .img_src {
   flex: 3;
   height: 100%;
   padding: 60px;
+  position: relative;
 }
 section.img_viewer .img_src img {
   display: block;
@@ -348,7 +353,7 @@ section.img_viewer .prompt_wrap .prompt_content .prompt_description::-webkit-scr
 }
 section.img_viewer .prompt_wrap .prompt_content .prompt_description .eye_slash_icon {
   display: block;
-  color: #999;
+  color: rgba(255, 255, 255, 0.8);
   position: absolute;
   top: 50%;
   left: 50%;
@@ -357,7 +362,7 @@ section.img_viewer .prompt_wrap .prompt_content .prompt_description .eye_slash_i
   height: 40px;
 }
 section.img_viewer .prompt_wrap .prompt_content .prompt_description .eye_slash_icon path {
-  stroke-width: 2px;
+  stroke-width: 1.5px;
 }
 section.img_viewer .mobile_button {
   display: none;
@@ -388,6 +393,9 @@ section.img_viewer .mobile_button .mobile_close_button {
   border: none;
   padding: 12px 16px;
   border-radius: 100px;
+}
+section.img_viewer .mobile_button .mobile_close_button:hover {
+  cursor: pointer;
 }
 
 section.hero_vod {

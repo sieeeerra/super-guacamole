@@ -224,41 +224,43 @@ section {
         margin-bottom: 120px;
 
         .item {
-            // Masonry 레이아웃
             position: absolute;
+            cursor: pointer;
+            overflow: hidden;
+            border-radius: 16px;
+
+            &:hover {
+                .img img {
+                    transform: scale(1.2);
+                    opacity: 0.8;
+                }
+            }
 
             .img {
                 // Masonry 레이아웃
                 width: 100%;
-                background-color: $box;
-                overflow: hidden;
-                cursor: pointer;
-                border-radius: 16px;
-
+                
                 img {
                     display: block;
                     width: 100%;
                     height: auto; // 이미지 비율 유지
                     object-fit: cover;
                     object-position: center;
-                    transition: transform .9s cubic-bezier(0, 0, 0.2, 1);
-                    will-change: transform;
-                }
-
-                &:hover {
-
-                    img {
-                        transform: scale(1.2);
-                    }
+                    transition: transform .9s cubic-bezier(0, 0, 0.2, 1), opacity .3s ease;
+                    will-change: transform, opacity;
                 }
             }
 
             .img_title {
-                font-size: 12px;
-                font-weight: 500;
-                letter-spacing: -0.02em;
+                display: none;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 24px;
+                font-weight: 700;
                 text-transform: uppercase;
-                color: #5C6170;
+                background-color: #00FF37;
             }
         }
     }
@@ -286,6 +288,7 @@ section.img_viewer {
         flex: 3;
         height: 100%;
         padding: 60px;
+        position: relative;
 
         img {
             display: block;
@@ -405,15 +408,16 @@ section.img_viewer {
 
                 .eye_slash_icon {
                     display: block;
-                    color: #999;
+                    color: rgba($color: #fff, $alpha: 0.8);
                     position: absolute;
                     top: 50%;
                     left: 50%;
                     transform: translate(-50%, -100%);
                     width: 40px;
                     height: 40px;
+
                     path {
-                        stroke-width: 2px;
+                        stroke-width: 1.5px;
                     }
                 }
             }
@@ -446,7 +450,13 @@ section.img_viewer {
             border: none;
             padding: 12px 16px;
             border-radius: 100px;
+
+            &:hover {
+                cursor: pointer;
+            }
         }
+
+
     }
 }
 
