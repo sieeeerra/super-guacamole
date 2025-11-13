@@ -1,7 +1,7 @@
 // Image 페이지 컴포넌트
 import { useState, useEffect } from 'react';
 import Title from '../components/Title.jsx';
-import Items from '../components/ImageItems.jsx';
+import ImageItems from '../components/ImageItems.jsx';
 import ImageViewer from '../components/ImageViewer.jsx';
 import Footer from '../components/Footer.jsx';
 import PageHead from '../components/PageHead.jsx';
@@ -102,7 +102,7 @@ export default function Image() {
               mainTitle={persona.mainTitle}
               subTitle={persona.subTitle}
             />
-            <Items items={filteredItems} onItemClick={handleItemClick} />
+            <ImageItems items={filteredItems} onItemClick={handleItemClick} />
           </section>
         );
       })}

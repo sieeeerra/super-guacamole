@@ -1,6 +1,6 @@
 // items 배열을 props로 받아서 렌더링 (각 item {img_src, img_title, img_model, img_description})
 // 이미지 클릭 시 onItemClick 콜백 호출
-export default function Items({ items, onItemClick }) {
+export default function ImageItems({ items, onItemClick }) {
   // 이미지 클릭 핸들러
   const handleImageClick = (item) => {
     if (onItemClick) {
