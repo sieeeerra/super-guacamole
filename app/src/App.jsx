@@ -1,7 +1,8 @@
 // 라우팅 설정: Home, Image, Contact, Video, Work 페이지 라우트 추가
 // 404 Not Found 페이지 라우트 추가
 // NotFound 페이지에서 Header 숨기기
-import React from 'react';
+// GA4 페이지뷰 추적 추가
+import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header.jsx';
 import Home from './pages/Home.jsx';
@@ -17,6 +18,15 @@ export default function App() {
   const validPaths = ['/', '/work', '/image', '/video', '/contact'];
   // 현재 경로가 정의된 라우트인지 확인
   const showHeader = validPaths.includes(location.pathname);
+
+  // GA4 페이지뷰 추적: 페이지 전환 시 자동으로 페이지뷰 전송
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.gtag) {
+      window.gtag('config', 'G-P4R3F1D36V', {
+        page_path: location.pathname + location.search,
+      });
+    }
+  }, [location]);
 
   return (
     <>
