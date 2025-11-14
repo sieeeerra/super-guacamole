@@ -1,5 +1,5 @@
 // 404 Not Found 페이지 컴포넌트
-import { Link } from 'react-router-dom';
+import TransitionLink from '../components/TransitionLink.jsx';
 
 export default function NotFound() {
   return (
@@ -16,7 +16,7 @@ export default function NotFound() {
         <p style={{ fontSize: '1.2rem' }}>
           요청하신 페이지가 존재하지 않습니다.
         </p>
-        <Link
+        <TransitionLink
           to="/"
           style={{
             padding: '0.75rem 1.5rem',
@@ -24,13 +24,14 @@ export default function NotFound() {
             color: '#fff',
             textDecoration: 'none',
             borderRadius: '4px',
-            transition: 'opacity 0.3s'
+            transition: 'opacity 0.3s',
+            display: 'inline-block'
           }}
           onMouseEnter={(e) => e.target.style.opacity = '0.8'}
           onMouseLeave={(e) => e.target.style.opacity = '1'}
         >
           홈으로 돌아가기
-        </Link>
+        </TransitionLink>
       </div>
     </>
   );

@@ -731,3 +731,20 @@ section.footer {
         }
     }
 }
+
+// 페이지 트랜지션 overlay 스타일
+// SVG path 기반 페이지 전환 애니메이션
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.overlay__path {
+    fill: #EAFFC3;
+    stroke: none;
+}

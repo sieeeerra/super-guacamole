@@ -1,10 +1,12 @@
 // 라우팅 설정: Home, Image, Contact, Video, Work 페이지 라우트 추가
 // GA4 페이지뷰 추적 추가
 // Vercel Web Analytics 추가
+// 페이지 트랜지션 overlay 추가
 import React, { useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import Header from './components/Header.jsx';
+import PageTransition from './components/PageTransition.jsx';
 import Home from './pages/Home.jsx';
 import Work from './pages/Work.jsx';
 import Image from './pages/Image.jsx';
@@ -33,18 +35,20 @@ export default function App() {
 
   return (
     <>
-      {showHeader && <Header />}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/work" element={<Work />} />
-        <Route path="/image" element={<Image />} />
-        <Route path="/video" element={<Video />} />
-        <Route path="/contact" element={<Contact />} />
-        {/* 존재하지 않는 경로에 대한 404 페이지 */}
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      {/* Vercel Web Analytics: 페이지뷰 및 성능 메트릭 자동 수집 */}
-      <Analytics />
+      <PageTransition>
+        {showHeader && <Header />}
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/work" element={<Work />} />
+          <Route path="/image" element={<Image />} />
+          <Route path="/video" element={<Video />} />
+          <Route path="/contact" element={<Contact />} />
+          {/* 존재하지 않는 경로에 대한 404 페이지 */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+        {/* Vercel Web Analytics: 페이지뷰 및 성능 메트릭 자동 수집 */}
+        <Analytics />
+      </PageTransition>
     </>
   );
 }
