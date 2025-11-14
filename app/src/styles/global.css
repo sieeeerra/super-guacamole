@@ -612,6 +612,9 @@ section.footer .bottom .site_info:hover .site_info_tooltip {
   header {
     padding: 10px 20px;
   }
+  header .logo {
+    flex: 0.5;
+  }
   main .hero .hero_txt {
     font-size: 20px;
     line-height: 140%;

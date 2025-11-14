@@ -726,6 +726,10 @@ section.footer {
 
     header {
         padding: 10px 20px;
+
+        .logo {
+            flex: 0.5;
+        }
     }
 
     main {
