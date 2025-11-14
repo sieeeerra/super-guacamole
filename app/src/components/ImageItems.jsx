@@ -31,23 +31,21 @@ export default function ImageItems({ items, onItemClick }) {
     if (!containerRef.current || items.length === 0) return;
 
     const container = containerRef.current;
-    // 사파리 모바일에서 getBoundingClientRect() 사용으로 더 정확한 너비 계산
-    const containerWidth = container.getBoundingClientRect().width || container.offsetWidth;
+    const containerWidth = container.offsetWidth;
     
-    // 컨테이너 너비가 0이면 레이아웃 계산 중단 (사파리 모바일에서 여러 번 재시도)
+    // 컨테이너 너비가 0이면 레이아웃 계산 중단 (모바일에서 여러 번 재시도)
     if (containerWidth === 0) {
-      // 사파리 모바일에서 컨테이너 너비 계산이 지연될 수 있으므로 재시도 로직 개선
+      // 모바일에서 컨테이너 너비 계산이 지연될 수 있으므로 재시도 로직 개선
       let retryCount = 0;
-      const maxRetries = 20; // 사파리 모바일에서 더 많은 재시도
+      const maxRetries = 15;
       const retry = () => {
         if (retryCount < maxRetries && containerRef.current) {
           retryCount++;
           requestAnimationFrame(() => {
-            const width = containerRef.current?.getBoundingClientRect().width || containerRef.current?.offsetWidth || 0;
-            if (width > 0) {
+            if (containerRef.current?.offsetWidth > 0) {
               calculateMasonryLayout();
             } else {
-              setTimeout(retry, 100); // 사파리 모바일에서 더 긴 대기 시간
+              setTimeout(retry, 50);
             }
           });
         }
@@ -58,9 +56,6 @@ export default function ImageItems({ items, onItemClick }) {
 
     const gap = 16; // gap
     const minColumnWidth = 250; // 최소 컬럼 너비 250px
-    const isMobile = window.innerWidth <= 768;
-    // 사파리 모바일 감지
-    const isSafariMobile = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
 
     // 컬럼 수 계산
     const columnCount = Math.max(1, Math.floor((containerWidth + gap) / (minColumnWidth + gap)));
@@ -77,27 +72,15 @@ export default function ImageItems({ items, onItemClick }) {
       const imgElement = itemRef.querySelector('img');
       if (!imgElement) return;
 
-      // 사파리 모바일에서 이미지 로드 확인 로직 강화
-      const isImageLoaded = imgElement.complete && 
-                           imgElement.naturalWidth > 0 && 
-                           imgElement.naturalHeight > 0 &&
-                           imgElement.naturalWidth !== undefined &&
-                           imgElement.naturalHeight !== undefined;
-
-      if (!isImageLoaded) {
-        // 사파리 모바일에서 이미지가 아직 로드 중이면 나중에 다시 계산하도록 스케줄링
-        if ((isMobile || isSafariMobile) && !imgElement.complete) {
-          // 기존 리스너 제거 후 새로 추가 (중복 방지)
-          const loadHandler = () => {
-            // 사파리 모바일에서 이미지 로드 후 약간의 지연 추가
-            setTimeout(() => {
-              requestAnimationFrame(() => {
-                calculateMasonryLayout();
-              });
-            }, isSafariMobile ? 50 : 0);
-          };
-          imgElement.removeEventListener('load', loadHandler);
-          imgElement.addEventListener('load', loadHandler, { once: true });
+      // 이미지가 완전히 로드되었는지 확인 (complete 체크 및 naturalWidth/naturalHeight 검증)
+      if (!imgElement.complete || imgElement.naturalWidth === 0 || imgElement.naturalHeight === 0) {
+        // 모바일에서 이미지가 아직 로드 중이면 나중에 다시 계산하도록 스케줄링
+        if (isMobile && !imgElement.complete) {
+          imgElement.addEventListener('load', () => {
+            requestAnimationFrame(() => {
+              calculateMasonryLayout();
+            });
+          }, { once: true });
         }
         return;
       }
@@ -105,32 +88,24 @@ export default function ImageItems({ items, onItemClick }) {
       // 이미지의 실제 높이 계산 (컬럼 너비에 맞춰 비율 조정)
       const naturalWidth = imgElement.naturalWidth;
       const naturalHeight = imgElement.naturalHeight;
-      
-      // 사파리 모바일에서 유효하지 않은 값 체크 강화
-      if (!naturalWidth || !naturalHeight || naturalWidth <= 0 || naturalHeight <= 0) {
-        return;
-      }
-      
       const aspectRatio = naturalHeight / naturalWidth;
       const itemHeight = columnWidth * aspectRatio;
 
       // 유효하지 않은 높이 체크
-      if (!isFinite(itemHeight) || itemHeight <= 0 || !isFinite(aspectRatio)) {
+      if (!isFinite(itemHeight) || itemHeight <= 0) {
         return;
       }
 
       // 가장 짧은 컬럼 찾기
       const shortestColumnIndex = columnHeights.indexOf(Math.min(...columnHeights));
 
-      // 아이템 위치 설정 (사파리 모바일에서 정확한 픽셀 값 사용)
+      // 아이템 위치 설정
       const left = shortestColumnIndex * (columnWidth + gap);
       const top = columnHeights[shortestColumnIndex];
 
-      // 사파리 모바일에서 transform 대신 left/top 사용 (더 안정적)
-      itemRef.style.width = `${Math.round(columnWidth)}px`;
-      itemRef.style.left = `${Math.round(left)}px`;
-      itemRef.style.top = `${Math.round(top)}px`;
-      itemRef.style.position = 'absolute'; // 명시적으로 설정
+      itemRef.style.width = `${columnWidth}px`;
+      itemRef.style.left = `${left}px`;
+      itemRef.style.top = `${top}px`;
 
       // 컬럼 높이 업데이트
       columnHeights[shortestColumnIndex] += itemHeight + gap;
@@ -140,36 +115,30 @@ export default function ImageItems({ items, onItemClick }) {
     // 처리된 아이템이 있는 경우에만 컨테이너 높이 설정
     if (processedCount > 0) {
       const maxHeight = Math.max(...columnHeights);
-      container.style.height = `${Math.round(maxHeight)}px`;
+      container.style.height = `${maxHeight}px`;
     }
   }, [items.length]);
 
-  // 이미지 로드 완료 및 레이아웃 재계산 (모바일 및 사파리 최적화)
+  // 이미지 로드 완료 및 레이아웃 재계산 (모바일 최적화)
   useEffect(() => {
     const isMobile = window.innerWidth <= 768;
-    const isSafariMobile = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
     
     // 모바일에서는 모든 이미지가 로드되지 않아도 부분적으로 레이아웃 계산
     if (isMobile && loadedImages > 0 && loadedImages < items.length) {
-      // 사파리 모바일에서는 더 긴 지연 시간 사용
-      const delay = isSafariMobile ? 150 : 0;
+      // 모바일: 이미지가 하나라도 로드되면 즉시 레이아웃 계산
       requestAnimationFrame(() => {
-        setTimeout(() => {
-          calculateMasonryLayout();
-        }, delay);
+        calculateMasonryLayout();
       });
     }
     
     // 모든 이미지가 로드된 경우
     if (loadedImages === items.length && items.length > 0) {
-      // 사파리 모바일에서 더 긴 지연 시간 사용
-      const delay = isSafariMobile ? 200 : 100;
       // 모든 이미지가 로드된 후 약간의 지연을 두고 레이아웃 계산
       // requestAnimationFrame을 사용하여 DOM 업데이트 후 실행 보장
       requestAnimationFrame(() => {
         setTimeout(() => {
           calculateMasonryLayout();
-        }, delay);
+        }, 100);
       });
     }
   }, [loadedImages, items.length, calculateMasonryLayout]);
@@ -214,11 +183,9 @@ export default function ImageItems({ items, onItemClick }) {
     itemRefs.current = [];
   }, [items]);
 
-  // 마운트 후 및 items 변경 시 이미지 로드 상태 확인 (캐시된 이미지 처리, 사파리 모바일 최적화)
+  // 마운트 후 및 items 변경 시 이미지 로드 상태 확인 (캐시된 이미지 처리)
   useEffect(() => {
     if (items.length === 0) return;
-
-    const isSafariMobile = /iPhone|iPad|iPod/.test(navigator.userAgent) && !window.MSStream;
 
     // 모든 이미지 요소가 이미 로드되었는지 확인
     const checkLoadedImages = () => {
@@ -226,12 +193,8 @@ export default function ImageItems({ items, onItemClick }) {
       itemRefs.current.forEach((itemRef, index) => {
         if (!itemRef) return;
         const imgElement = itemRef.querySelector('img');
-        // 사파리 모바일에서 이미지 로드 확인 로직 강화
         if (imgElement && imgElement.complete && 
-            imgElement.naturalWidth > 0 && 
-            imgElement.naturalHeight > 0 &&
-            imgElement.naturalWidth !== undefined &&
-            imgElement.naturalHeight !== undefined) {
+            imgElement.naturalWidth > 0 && imgElement.naturalHeight > 0) {
           if (!loadedImageSet.current.has(index)) {
             loadedImageSet.current.add(index);
             alreadyLoadedCount++;
@@ -244,9 +207,8 @@ export default function ImageItems({ items, onItemClick }) {
       }
     };
 
-    // 사파리 모바일에서 더 긴 대기 시간 사용
-    const delay = isSafariMobile ? 150 : 50;
-    const timer = setTimeout(checkLoadedImages, delay);
+    // DOM이 업데이트된 후 확인
+    const timer = setTimeout(checkLoadedImages, 50);
     return () => clearTimeout(timer);
   }, [items]);
 
