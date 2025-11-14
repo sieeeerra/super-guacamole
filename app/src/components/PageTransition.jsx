@@ -133,7 +133,7 @@ export default function PageTransition({ children }) {
         const isFromImage = from === '/image';
         
         // 이미지 페이지로 이동하거나 이미지 페이지에서 이동할 때는 다른 delay 사용
-        const delayTime = (isToImage || isFromImage) ? 1.7 : 0.6;  // 이미지 페이지 : 그 외 페이지
+        const delayTime = (isToImage || isFromImage) ? 1.7 : 0.7;  // 이미지 페이지 : 그 외 페이지
         
         if (isFromHome && !isToHome) {
             // 홈에서 다른 페이지로 이동

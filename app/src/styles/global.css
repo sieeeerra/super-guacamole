@@ -87,7 +87,7 @@ header nav ul li {
   transition: 0.2s ease-out;
 }
 header nav ul li.active {
-  background-color: #15003C;
+  text-decoration: none;
 }
 header nav .menu:last-child {
   justify-content: flex-end;
@@ -529,6 +529,7 @@ section.footer {
   gap: 80px;
   background-color: #F9F9F9;
   border-radius: 20px;
+  cursor: default;
 }
 section.footer .today {
   font-family: "Azeret Mono", sans-serif;
@@ -567,7 +568,6 @@ section.footer .bottom .site_info {
   text-align: right;
   color: #929292;
   position: relative;
-  cursor: help;
 }
 section.footer .bottom .site_info .site_info_tooltip {
   position: absolute;

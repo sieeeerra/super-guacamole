@@ -103,7 +103,7 @@ header {
                 ;
 
                 &.active {
-                    background-color: #15003C;
+                    text-decoration: none;
                 }
             }
         }
@@ -629,6 +629,7 @@ section.footer {
     gap: 80px;
     background-color: #F9F9F9;
     border-radius: 20px;
+    cursor: default;
 
     .today {
         font-family: "Azeret Mono", sans-serif;
@@ -672,7 +673,6 @@ section.footer {
             text-align: right;
             color: #929292;
             position: relative;
-            cursor: help;
 
             .site_info_tooltip {
                 position: absolute;
