@@ -314,7 +314,7 @@ section.img_viewer {
         .mobile_button {
             display: none;
             position: absolute;
-            bottom: calc(40px + env(safe-area-inset-bottom));
+            bottom: calc(80px + env(safe-area-inset-bottom));
             left: 50%;
             transform: translateX(-50%);
             font-size: 14px;
@@ -331,28 +331,28 @@ section.img_viewer {
                 0 2px 12px rgba(0, 0, 0, 0.18),
                 inset 0 0 0.5px rgba(255, 255, 255, 0.14);
             color: rgba(255, 255, 255, 0.92);
-    
+
             z-index: 1001;
             opacity: 0;
             animation: toast 4.1s cubic-bezier(.25, .85, .35, 1) forwards;
             animation-delay: 1s;
-    
+
             @keyframes toast {
                 0% {
                     opacity: 0;
                     transform: translateX(-50%) translateY(20px) scale(0.85);
                 }
-    
+
                 24% {
                     opacity: 1;
                     transform: translateX(-50%) translateY(0) scale(1);
                 }
-    
+
                 85% {
                     opacity: 1;
                     transform: translateX(-50%) translateY(0) scale(1);
                 }
-    
+
                 100% {
                     opacity: 0;
                     transform: translateX(-50%) translateY(10px) scale(0.98);
@@ -486,7 +486,7 @@ section.img_viewer {
         }
     }
 
- 
+
 }
 
 // video page
@@ -555,15 +555,15 @@ section.hero_vod {
 
             0% {
                 transform: translateX(-50%) translateY(0) scale(1);
-              }
-            
-              50% {
+            }
+
+            50% {
                 transform: translateX(-50%) translateY(-20px) scale(1.05);
-              }
-            
-              100% {
+            }
+
+            100% {
                 transform: translateX(-50%) translateY(0) scale(1);
-              }
+            }
 
 
         }
@@ -770,8 +770,12 @@ section.footer {
         section.footer {
             margin: 20px;
 
-            .today .time {
-                text-align: right;
+            .today {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
+
             }
         }
     }
