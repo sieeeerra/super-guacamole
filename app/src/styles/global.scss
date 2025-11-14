@@ -4,6 +4,33 @@ html {
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
+    // 스크롤바 커스터마이징: 레이아웃 흔들림 방지 및 투명 인디케이터
+    scrollbar-gutter: stable; // 레이아웃 흔들림 방지
+    // Firefox 스크롤바 스타일 (얇게, 반투명 회색)
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+// Webkit 스크롤바 스타일 (Chrome, Safari, Edge)
+html::-webkit-scrollbar {
+    width: 6px; // 얇은 스크롤바
+}
+
+html::-webkit-scrollbar-track {
+    background: transparent; // 트랙 투명
+}
+
+html::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.3); // 반투명 회색
+    opacity: 0; // 기본 숨김
+    transition: opacity 0.3s ease; // 부드러운 전환
+    border-radius: 3px;
+}
+
+// 호버 시 스크롤 인디케이터 표시
+html:hover::-webkit-scrollbar-thumb,
+body:hover::-webkit-scrollbar-thumb {
+    opacity: 1;
 }
 
 $background-main: #fff;
