@@ -1,8 +1,13 @@
 // 헤더 컴포넌트
 // 트랜지션을 사용하는 커스텀 Link 컴포넌트 사용
+// 현재 페이지 감지를 위해 useLocation 추가
+import { useLocation } from 'react-router-dom';
 import TransitionLink from './TransitionLink.jsx';
 
 export default function Header() {
+  // 현재 경로 가져오기
+  const location = useLocation();
+
   return (
     <header>
       <div className="logo">
@@ -21,14 +26,14 @@ export default function Header() {
       </div>
       <nav>
         <ul className="menu">
-          <li><TransitionLink to="/work">Work</TransitionLink></li>
+          <li className={location.pathname === '/work' ? 'active' : ''}><TransitionLink to="/work">Work</TransitionLink></li>
         </ul>
         <ul className="menu">
-          <li><TransitionLink to="/image">Image,</TransitionLink></li>
-          <li><TransitionLink to="/video">Video</TransitionLink></li>
+          <li className={location.pathname === '/image' ? 'active' : ''}><TransitionLink to="/image">Image,</TransitionLink></li>
+          <li className={location.pathname === '/video' ? 'active' : ''}><TransitionLink to="/video">Video</TransitionLink></li>
         </ul>
         <ul className="menu">
-          <li><TransitionLink to="/contact">Contact</TransitionLink></li>
+          <li className={location.pathname === '/contact' ? 'active' : ''}><TransitionLink to="/contact">Contact</TransitionLink></li>
         </ul>
       </nav>
     </header>

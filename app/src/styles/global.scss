@@ -99,7 +99,11 @@ header {
                 letter-spacing: -0.01em;
                 text-transform: uppercase;
                 color: $text-white;
-                transition: 0.2s ease-out;
+                transition: 0.2s ease-out;;
+
+                &.active {
+                    background-color: #15003C;
+                }
             }
         }
 
@@ -736,6 +740,10 @@ section.footer {
 
         section.footer {
             margin: 20px;
+
+            .today .time {
+                text-align: right;
+            }
         }
     }
 }
