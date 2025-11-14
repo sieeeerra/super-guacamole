@@ -381,7 +381,6 @@ section.img_viewer .mobile_button {
   transform: translateX(-50%);
   font-size: 14px;
   font-weight: 400;
-  color: #fff;
   padding: 16px 24px;
   background: linear-gradient(135deg, rgba(20, 20, 20, 0.6), rgba(15, 15, 15, 0.45));
   backdrop-filter: blur(18px) saturate(160%);
@@ -439,14 +438,15 @@ section.hero_vod .vod_caption {
   bottom: 40px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: rgba(51, 51, 51, 0.2);
   padding: 14px 24px;
   border-radius: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #fff;
-  -webkit-backdrop-filter: blur(8px);
-          backdrop-filter: blur(8px);
-  animation: bounce 3s ease-in-out infinite;
+  background: linear-gradient(135deg, rgba(20, 20, 20, 0.6), rgba(15, 15, 15, 0.45));
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.18), inset 0 0 0.5px rgba(255, 255, 255, 0.14);
+  color: rgba(255, 255, 255, 0.92);
+  animation: bounce 4s cubic-bezier(0.5, 0.1, 0.3, 0.9) infinite;
 }
 section.hero_vod .vod_caption span {
   font-size: 14px;
@@ -467,11 +467,14 @@ section.hero_vod .vod_caption svg path {
   stroke-width: 1.7px;
 }
 @keyframes bounce {
-  0%, 100% {
+  0% {
     transform: translateX(-50%) translateY(0) scale(1);
   }
   50% {
     transform: translateX(-50%) translateY(-20px) scale(1.05);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0) scale(1);
   }
 }
 
