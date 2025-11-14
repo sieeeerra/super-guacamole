@@ -8,6 +8,8 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
   const [isCopied, setIsCopied] = useState(false);
   // mobile_button 표시 여부 관리
   const [showMobileButton, setShowMobileButton] = useState(true);
+  // 스와이프 제스처를 위한 터치 시작 위치 저장
+  const touchStartY = useRef(0);
 
   // 모달 열림/닫힘에 따른 배경 스크롤 제어
   useEffect(() => {
@@ -78,6 +80,32 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
     }
   };
 
+  // mobile_button 스와이프 제스처 핸들러
+  const handleTouchStart = (e) => {
+    // 터치 시작 위치 저장
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchMove = (e) => {
+    // 이벤트 전파를 막아 모달이 닫히지 않도록 함
+    e.stopPropagation();
+  };
+
+  const handleTouchEnd = (e) => {
+    // 이벤트 전파를 막아 모달이 닫히지 않도록 함
+    e.stopPropagation();
+    
+    // 터치 종료 위치
+    const touchEndY = e.changedTouches[0].clientY;
+    // 아래로 스와이프한 거리 계산
+    const swipeDistance = touchEndY - touchStartY.current;
+    
+    // 아래로 20px 이상 스와이프했을 때 버튼 숨김
+    if (swipeDistance > 20) {
+      setShowMobileButton(false);
+    }
+  };
+
   return (
     <div className="image_viewer_overlay">
       {/* 복사 성공 메시지 */}
@@ -96,9 +124,10 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
               onClick={(e) => {
                 // 이벤트 전파를 막아 모달이 닫히지 않도록 함
                 e.stopPropagation();
-                // mobile_button만 즉시 사라지게 함
-                setShowMobileButton(false);
               }}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
               <span>Tap anywhere to close</span>
             </div>

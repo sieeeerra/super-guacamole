@@ -775,17 +775,10 @@ section.footer {
             margin: 20px;
 
             .today {
-                display: flex;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 8px;
+                white-space: nowrap;
 
                 .time {
-                    order: 1;
-                }
-
-                .date {
-                    order: 2;
+                    text-align: right;
                 }
             }
         }
