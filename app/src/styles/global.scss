@@ -776,10 +776,11 @@ section.footer {
 
             .today {
                 white-space: nowrap;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 8px;
 
-                .time {
-                    text-align: right;
-                }
+                
             }
         }
     }
