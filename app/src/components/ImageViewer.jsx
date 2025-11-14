@@ -81,14 +81,14 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
         <div className="copy_success_message">copied!</div>
       )}
       <section className="img_viewer">
-        {/* 모바일 버튼 */}
-        <div className="mobile_button" onClick={onClose}>
-          <span>Tap anywhere to close</span>
-        </div>
 
         {/* 이미지 표시 영역 */}
         <div className="img_src" onClick={onClose}>
           <img src={imageData.img_src} alt={imageData.img_title || 'Image'} />
+          {/* 모바일 버튼 */}
+          <div className="mobile_button" onClick={onClose}>
+            <span>Tap anywhere to close</span>
+          </div>
         </div>
 
         {/* 이미지 상세 정보 영역 */}
@@ -100,8 +100,8 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
                 <path d="M25 25L7 7" stroke="white" stroke-width="1.5" stroke-linejoin="bevel" />
               </svg>
             </button>
-            <button 
-              className="copy_button" 
+            <button
+              className="copy_button"
               onClick={handleCopyPrompt}
               disabled={imageData.img_description === 'EyeSlash'}
             >
