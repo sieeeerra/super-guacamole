@@ -47,7 +47,7 @@ export default function PageHead({ mainTitle, subTitle1, subTitle2 }) {
         }
 
         .page_head .sub_title_wrap {
-          gap: 6px;
+          gap: 4px;
         }
 
         .page_head .sub_title {
