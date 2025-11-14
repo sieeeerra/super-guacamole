@@ -20,7 +20,6 @@ export default function Video() {
           </div>
         </section>
         <section style={{ minHeight: '100vh' }}>
-          {/* 변경: subTitle을 subTitle1, subTitle2로 분리하여 전달 */}
           <PageHead
             mainTitle="Video"
             subTitle1={

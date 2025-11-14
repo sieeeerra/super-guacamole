@@ -99,7 +99,8 @@ header {
                 letter-spacing: -0.01em;
                 text-transform: uppercase;
                 color: $text-white;
-                transition: 0.2s ease-out;;
+                transition: 0.2s ease-out;
+                ;
 
                 &.active {
                     background-color: #15003C;
@@ -251,7 +252,7 @@ section {
             .img {
                 // Masonry 레이아웃
                 width: 100%;
-                
+
                 img {
                     display: block;
                     width: 100%;
@@ -438,37 +439,52 @@ section.img_viewer {
 
     .mobile_button {
         display: none;
-        justify-content: center;
-        align-items: center;
-        gap: 8px;
         position: absolute;
-        bottom: 8%;
+        top: 40px;
         left: 50%;
         transform: translateX(-50%);
-        background-color: rgba(17, 17, 17, 0.5);
-        backdrop-filter: blur(10px);
-        padding: 4px 8px;
-        border-radius: 100px;
-        border: 1px solid rgba($color: #5C5C5C, $alpha: 0.1);
+        font-size: 14px;
+        font-weight: 400;
+        color: #fff;
+        padding: 16px 24px;
+        background: linear-gradient(135deg,
+                rgba(20, 20, 20, 0.60),
+                rgba(15, 15, 15, 0.45));
+        backdrop-filter: blur(18px) saturate(160%);
+        -webkit-backdrop-filter: blur(18px) saturate(160%);
+        border-radius: 20px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow:
+            0 2px 12px rgba(0, 0, 0, 0.18),
+            inset 0 0 0.5px rgba(255, 255, 255, 0.14);
+        color: rgba(255, 255, 255, 0.92);
 
-        .mobile_close_button {
-            height: fit-content;
-            width: fit-content;
-            font-size: 14px;
-            font-weight: 500;
-            letter-spacing: -0.02em;
-            color: #fff;
-            background-color: transparent;
-            border: none;
-            padding: 12px 16px;
-            border-radius: 100px;
+        z-index: 1001;
+        opacity: 0;
+        animation: toast 4.1s cubic-bezier(.25, .85, .35, 1) forwards;
+        animation-delay: 1s;
 
-            &:hover {
-                cursor: pointer;
+        @keyframes toast {
+            0% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-20px) scale(0.85);
+            }
+
+            24% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+
+            85% {
+                opacity: 1;
+                transform: translateX(-50%) translateY(0) scale(1);
+            }
+
+            100% {
+                opacity: 0;
+                transform: translateX(-50%) translateY(-10px) scale(1);
             }
         }
-
-
     }
 }
 
@@ -728,7 +744,7 @@ section.footer {
             }
 
             .mobile_button {
-                display: flex;
+                display: block;
             }
 
             .img_src {
