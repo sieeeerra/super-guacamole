@@ -25,7 +25,7 @@ export default function PageHead({ mainTitle, subTitle1, subTitle2 }) {
           flex: 1;
           display: flex;
           flex-direction: column;
-          gap: 16px;
+          gap: 8px;
         }
 
         .page_head .sub_title {
@@ -39,7 +39,7 @@ export default function PageHead({ mainTitle, subTitle1, subTitle2 }) {
         .page_head{
         flex-direction: column;
         align-items: flex-start;
-        gap: 16px;
+        gap: 10px;
         }
 
         .page_head .main_title {
@@ -47,7 +47,7 @@ export default function PageHead({ mainTitle, subTitle1, subTitle2 }) {
         }
 
         .page_head .sub_title_wrap {
-          gap: 8px;
+          gap: 6px;
         }
 
         .page_head .sub_title {
