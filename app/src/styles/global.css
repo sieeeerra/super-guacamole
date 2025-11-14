@@ -376,7 +376,7 @@ section.img_viewer .prompt_wrap .prompt_content .prompt_description .eye_slash_i
 section.img_viewer .mobile_button {
   display: none;
   position: absolute;
-  top: 40px;
+  bottom: 12%;
   left: 50%;
   transform: translateX(-50%);
   font-size: 14px;
@@ -397,7 +397,7 @@ section.img_viewer .mobile_button {
 @keyframes toast {
   0% {
     opacity: 0;
-    transform: translateX(-50%) translateY(-20px) scale(0.85);
+    transform: translateX(-50%) translateY(20px) scale(0.85);
   }
   24% {
     opacity: 1;
@@ -409,7 +409,7 @@ section.img_viewer .mobile_button {
   }
   100% {
     opacity: 0;
-    transform: translateX(-50%) translateY(-10px) scale(1);
+    transform: translateX(-50%) translateY(10px) scale(1);
   }
 }
 

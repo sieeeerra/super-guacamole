@@ -82,7 +82,7 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
       )}
       <section className="img_viewer">
         {/* 모바일 버튼 */}
-        <div className="mobile_button">
+        <div className="mobile_button" onClick={onClose}>
           <span>Tap anywhere to close</span>
         </div>
 
