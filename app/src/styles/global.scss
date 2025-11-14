@@ -314,12 +314,12 @@ section.img_viewer {
         .mobile_button {
             display: none;
             position: absolute;
-            bottom: calc(80px + env(safe-area-inset-bottom));
+            bottom: calc(60px + env(safe-area-inset-bottom));
             left: 50%;
             transform: translateX(-50%);
             font-size: 14px;
             font-weight: 400;
-            padding: 16px 24px;
+            padding: 16px 16px;
             background: linear-gradient(135deg,
                     rgba(20, 20, 20, 0.60),
                     rgba(15, 15, 15, 0.45));

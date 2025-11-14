@@ -33,16 +33,29 @@ export default function ImageItems({ items, onItemClick }) {
     const container = containerRef.current;
     const containerWidth = container.offsetWidth;
     
-    // 컨테이너 너비가 0이면 레이아웃 계산 중단 (다음 프레임에 재시도)
+    // 컨테이너 너비가 0이면 레이아웃 계산 중단 (모바일에서 여러 번 재시도)
     if (containerWidth === 0) {
-      requestAnimationFrame(() => {
-        calculateMasonryLayout();
-      });
+      // 모바일에서 컨테이너 너비 계산이 지연될 수 있으므로 재시도 로직 개선
+      let retryCount = 0;
+      const maxRetries = 15;
+      const retry = () => {
+        if (retryCount < maxRetries && containerRef.current) {
+          retryCount++;
+          requestAnimationFrame(() => {
+            if (containerRef.current?.offsetWidth > 0) {
+              calculateMasonryLayout();
+            } else {
+              setTimeout(retry, 50);
+            }
+          });
+        }
+      };
+      retry();
       return;
     }
 
     const gap = 16; // gap
-    const minColumnWidth = 250; // 최소 컬럼 너비 250px
+    const minColumnWidth = 200; // 최소 컬럼 너비 200px
 
     // 컬럼 수 계산
     const columnCount = Math.max(1, Math.floor((containerWidth + gap) / (minColumnWidth + gap)));
@@ -61,6 +74,14 @@ export default function ImageItems({ items, onItemClick }) {
 
       // 이미지가 완전히 로드되었는지 확인 (complete 체크 및 naturalWidth/naturalHeight 검증)
       if (!imgElement.complete || imgElement.naturalWidth === 0 || imgElement.naturalHeight === 0) {
+        // 모바일에서 이미지가 아직 로드 중이면 나중에 다시 계산하도록 스케줄링
+        if (isMobile && !imgElement.complete) {
+          imgElement.addEventListener('load', () => {
+            requestAnimationFrame(() => {
+              calculateMasonryLayout();
+            });
+          }, { once: true });
+        }
         return;
       }
 
@@ -98,8 +119,19 @@ export default function ImageItems({ items, onItemClick }) {
     }
   }, [items.length]);
 
-  // 이미지 로드 완료 및 레이아웃 재계산
+  // 이미지 로드 완료 및 레이아웃 재계산 (모바일 최적화)
   useEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+    
+    // 모바일에서는 모든 이미지가 로드되지 않아도 부분적으로 레이아웃 계산
+    if (isMobile && loadedImages > 0 && loadedImages < items.length) {
+      // 모바일: 이미지가 하나라도 로드되면 즉시 레이아웃 계산
+      requestAnimationFrame(() => {
+        calculateMasonryLayout();
+      });
+    }
+    
+    // 모든 이미지가 로드된 경우
     if (loadedImages === items.length && items.length > 0) {
       // 모든 이미지가 로드된 후 약간의 지연을 두고 레이아웃 계산
       // requestAnimationFrame을 사용하여 DOM 업데이트 후 실행 보장
@@ -111,21 +143,35 @@ export default function ImageItems({ items, onItemClick }) {
     }
   }, [loadedImages, items.length, calculateMasonryLayout]);
 
-  // 리사이즈 이벤트 핸들링 (디바운싱 추가)
+  // 리사이즈 이벤트 핸들링 (디바운싱 개선 - 모바일 최적화)
   useEffect(() => {
     let resizeTimer;
     const handleResize = () => {
       clearTimeout(resizeTimer);
+      // 모바일에서는 더 긴 디바운스 시간 사용
+      const isMobile = window.innerWidth <= 768;
+      const debounceTime = isMobile ? 300 : 150;
+      
       resizeTimer = setTimeout(() => {
-        if (loadedImages === items.length && items.length > 0) {
-          calculateMasonryLayout();
+        // 컨테이너 너비가 유효한 경우에만 레이아웃 계산
+        if (containerRef.current?.offsetWidth > 0) {
+          if (loadedImages === items.length && items.length > 0) {
+            calculateMasonryLayout();
+          } else if (isMobile && loadedImages > 0) {
+            // 모바일: 일부 이미지만 로드된 경우에도 레이아웃 계산
+            calculateMasonryLayout();
+          }
         }
-      }, 150);
+      }, debounceTime);
     };
 
     window.addEventListener('resize', handleResize);
+    // 모바일에서 orientationchange 이벤트도 처리
+    window.addEventListener('orientationchange', handleResize);
+    
     return () => {
       window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
       clearTimeout(resizeTimer);
     };
   }, [loadedImages, items.length, calculateMasonryLayout]);
