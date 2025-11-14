@@ -780,6 +780,13 @@ section.footer {
                 align-items: flex-start;
                 gap: 8px;
 
+                .time {
+                    order: 1;
+                }
+
+                .date {
+                    order: 2;
+                }
             }
         }
     }

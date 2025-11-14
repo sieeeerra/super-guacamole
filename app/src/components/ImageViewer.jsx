@@ -6,6 +6,8 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
   const scrollPositionRef = useRef(0);
   // 프롬프트 복사 성공 상태 관리
   const [isCopied, setIsCopied] = useState(false);
+  // mobile_button 표시 여부 관리
+  const [showMobileButton, setShowMobileButton] = useState(true);
 
   // 모달 열림/닫힘에 따른 배경 스크롤 제어
   useEffect(() => {
@@ -16,6 +18,8 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollPositionRef.current}px`;
       document.body.style.width = '100%';
+      // 모달이 열릴 때 mobile_button 다시 표시
+      setShowMobileButton(true);
     } else {
       // 모달이 닫힐 때: 스크롤 위치 복원 및 배경 스크롤 활성화
       // 스타일을 제거하기 전에 스크롤 위치를 먼저 설정하여 화면 이동 방지
@@ -86,9 +90,19 @@ export default function ImageViewer({ isOpen, imageData, onClose }) {
         <div className="img_src" onClick={onClose}>
           <img src={imageData.img_src} alt={imageData.img_title || 'Image'} />
           {/* 모바일 버튼 */}
-          <div className="mobile_button" onClick={onClose}>
-            <span>Tap anywhere to close</span>
-          </div>
+          {showMobileButton && (
+            <div 
+              className="mobile_button"
+              onClick={(e) => {
+                // 이벤트 전파를 막아 모달이 닫히지 않도록 함
+                e.stopPropagation();
+                // mobile_button만 즉시 사라지게 함
+                setShowMobileButton(false);
+              }}
+            >
+              <span>Tap anywhere to close</span>
+            </div>
+          )}
         </div>
 
         {/* 이미지 상세 정보 영역 */}
