@@ -33,6 +33,6 @@ export const projects = [
     sub_title: '',
     date: '2019',
     link: '',
-    img: ''
+    img: '/img/project05.png'
   }
 ];
