@@ -15,5 +15,9 @@ export default defineConfig({
   // 빌드 시 청크 크기 경고 제한 조정
   build: {
     chunkSizeWarningLimit: 1000 // 1000KB (1MB)로 경고 임계값 설정
+  },
+  // @emotion 의존성 최적화 설정 추가
+  optimizeDeps: {
+    include: ['@emotion/react', '@emotion/styled', '@mui/material']
   }
 });

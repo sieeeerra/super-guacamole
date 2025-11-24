@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
 import Footer from '../components/Footer.jsx';
+import ScrollStaggerText from '../components/patterns/ScrollStaggerText.jsx';
 
 // WebGL 효과를 위한 셰이더 코드
 const vertexShader = `void main() {
@@ -558,11 +559,37 @@ export default function Home() {
           <canvas id="webgl-canvas" ref={webglCanvasRef}></canvas>
           <canvas id="webgl-canvas-2" ref={webglCanvas2Ref}></canvas>
         </div>
-        <div className="hero_txt">
-          2019년 피트니스 스타트업의 디자이너 커리어를 시작으로 크리에이티브 영역을 넓혀왔습니다. 2024년 핀테크 스타트업에서 복잡한 금융 정보를 사용자 중심의 간결한
-          디자인으로 선보였습니다. 디자인을 구조화하는데 집중하여 토큰 단위로 디자인 시스템을 개선하였습니다. 2020년 브랜드에 관심있는 사람들과 도전 정신을 바탕으로 패션 브랜드 헤비도큐먼트를 만들었고
-          웹 서비스의 사용자 경험을 설계했습니다. 창의적이고 진취적인 방향으로 꾸준히 성장하고 있습니다. 일을 사랑하고, 함께 성공을 만들어갈 만남을 소중히 생각합니다.
-        </div>
+        {/* ScrollStaggerText 효과 적용 - 스크롤에 따라 글자가 나타나는 애니메이션 */}
+        <ScrollStaggerText
+          text="2019년 피트니스 스타트업의 디자이너 커리어를 시작으로 크리에이티브 영역을 넓혀왔습니다. 2024년 핀테크 스타트업에서 복잡한 금융 정보를 사용자 중심의 간결한 디자인으로 선보였습니다. 디자인을 구조화하는데 집중하여 토큰 단위로 디자인 시스템을 개선하였습니다. 2021년 브랜드에 관심있는 사람들과 도전 정신을 바탕으로 패션 브랜드 헤비도큐먼트를 만들었고 웹 서비스의 사용자 경험을 설계했습니다. 창의적이고 진취적인 방향으로 꾸준히 성장하고 있습니다. 일을 사랑하고, 함께 성공을 만들어갈 만남을 소중히 생각합니다."
+          variant="body1"
+          keepVisible={true}
+          id="hero-text-stagger"
+          textAlign="left"
+          sx={{
+            width: "100%",
+            height: "100vh",
+            padding: "40px",
+            position: "relative",
+            zIndex: 3,
+            minHeight: "auto",
+            py: 0,
+            alignItems: "flex-start",
+            justifyContent: "flex-start",
+            '@media (max-width: 768px)': {
+              padding: "20px",
+            },
+          }}
+          typographySx={{
+            fontSize: "28px",
+            fontWeight: 500,
+            lineHeight: "140%",
+            textAlign: "left",
+            '@media (max-width: 768px)': {
+              fontSize: "20px",
+            },
+          }}
+        />
       </div>
       <Footer />
     </main>
