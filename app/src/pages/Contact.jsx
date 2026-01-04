@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import Footer from '../components/Footer';
 
 export default function Contact() {
-  const [email] = useState('achhrv@gmail.com');
+  const [email] = useState('email');
   // 복사 성공 상태 관리
   const [isCopied, setIsCopied] = useState(false);
   // 타이핑 애니메이션을 위한 텍스트 상태
@@ -133,7 +133,7 @@ export default function Contact() {
         <span className="greeting_text">
           Hello, I'm an energetic and culturally competent product designer based in Seoul. I like tackling
           challenging problems and have a knack for crafting intuitive user experiences. If you ever want to reach
-          out, feel free to <span ref={textSpanRef} className={isCopied ? 'copied-text' : ''} style={{ display: 'inline-block', minWidth: textWidth ? `${textWidth}px` : 'auto', whiteSpace: 'nowrap', verticalAlign: 'top' }}>{displayText}</span> an <span className="accent" onClick={handleEmailClick}>email</span> or <span className="accent"><a href="https://www.instagram.com/chxwwws" target="_blank">direct message</a></span> anytime.
+          out, feel free to <span ref={textSpanRef} className={isCopied ? 'copied-text' : ''} style={{ display: 'inline-block', minWidth: textWidth ? `${textWidth}px` : 'auto', whiteSpace: 'nowrap', verticalAlign: 'top' }}>{displayText}</span> an <span className="accent" onClick={handleEmailClick}>email</span> or <span className="accent"><a href="" target="_blank">direct message</a></span> anytime.
         </span>
       </section>
       {/* Footer 컴포넌트 추가 */}
